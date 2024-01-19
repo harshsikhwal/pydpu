@@ -3,10 +3,10 @@
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
 import grpc
-from baseAPI import Base
+from ..baseAPI import Base
 
-from .proto.v1 import ipsec_pb2_grpc
-from .proto.v1 import ipsec_pb2
+from ..proto.v1 import ipsec_pb2_grpc
+from ..proto.v1 import ipsec_pb2
 
 
 class IPSecAPI(Base):
@@ -23,50 +23,50 @@ class IPSecAPI(Base):
         """
         return ipsec_pb2
 
-    def get_ipsec_version(self, ipsec_version_request):
+    def get_ipsec_version(self, request):
         try:
-            res = self.stub.IPsecVersion(request=ipsec_version_request)
-            return res
+            return self.stub.IPsecVersion(request=request)
         except grpc.RpcError as e:
             print(e)
 
-    def get_ipsec_stats(self, ipsec_version_stats_request):
+    def get_ipsec_stats(self, request):
         try:
-            res = self.stub.IPsecStats(request=ipsec_version_stats_request)
-            return res
+            return self.stub.IPsecStats(request=request)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_conns(self, ipsec_list_conns_request):
+    def list_ipsec_conns(self, request):
         try:
-            res = self.stub.IPsecListConns(request=ipsec_list_conns_request)
-            return res
+            return self.stub.IPsecListConns(request=request)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_sas(self, ipsec_list_sas_request):
+    def list_ipsec_sas(self, request):
         try:
-            res = self.stub.IPsecListSas(request=ipsec_list_sas_request)
-            return res
+            return self.stub.IPsecListSas(request=request)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_certs(self, ipsec_list_certs_request):
+    def list_ipsec_certs(self, request):
         try:
-            res = self.stub.IPsecListCerts(request=ipsec_list_certs_request)
-            return res
+            return self.stub.IPsecListCerts(request=request)
+        except grpc.RpcError as e:
+            print(e)
 
+    def load_ipsec_connection(self, request):
+        try:
+            return self.stub.IPsecLoadConn(request=request)
         except grpc.RpcError as e:
             print(e)
 
 
 class SecurityAPI(Base):
 
-    def __init__(self):
-        super(SecurityAPI, self).__init__(None)
+    def __init__(self, parent):
+        super(SecurityAPI, self).__init__(parent)
 
     @property
-    def ipsec_api(self) -> IPSecAPI:
+    def ipsec(self) -> IPSecAPI:
         """
         Create the Inventory API instance.
         :return: inventory api
@@ -74,5 +74,3 @@ class SecurityAPI(Base):
         if self._ipsec_api_ is None:
             self._ipsec_api_ = IPSecAPI(self)
         return self._ipsec_api_
-
-

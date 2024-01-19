@@ -8,28 +8,24 @@ class Connection(object):
     """
     This is the base class which maintains all the gRPC connection info
     """
-
-    def __init__(self, ip, port, ca, ca_key, rca):
-        self._ip = ip
-        self._port = port
-        self._client_certificate = ca
-        self._client_certificate_key = ca_key
-        self._root_certificate = rca
-        self._channel = None
+    def __init__(self, ip, port, ca=None, ca_key=None, rca=None):
+        self._ip_ = ip
+        self._port_ = port
+        self._client_certificate_ = ca
+        self._client_certificate_key_ = ca_key
+        self._root_certificate_ = rca
 
     @property
     def host(self) -> str:
-        return self._host
+        return self._ip_ + self._port_
 
-    @property
-    def channel(self) -> str:
-        if self._channel is None:
-            self._channel = self.connect_grpc()
-        else:
-            return self._channel
+    def insecure_channel(self):
+        return grpc.insecure_channel(self.host)
 
-    def connect_grpc(self):
+    def secure_channel(self):
+        raise NotImplementedError("This method is not implemented yet")
 
+        """
         credentials = grpc.ssl_channel_credentials(
             root_certificates=self._root_certificate,
             certificate_chain=self._client_certificate,
@@ -48,3 +44,4 @@ class Connection(object):
         except:
             print(f"Timeout. Failed to establish secure channel to {self._ip}")
         return channel
+        """

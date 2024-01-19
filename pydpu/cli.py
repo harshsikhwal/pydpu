@@ -4,9 +4,9 @@ import grpc
 
 from .dpuredfish import accounts, certificates, managers, systems, update
 from .evpn import bridge_create, port_create, svi_create, vrf_create
-from .inventory import get_inventory
+from .rpc_apis.inventory import get_inventory
 from .ipsec import create_new_tunnel, get_stats
-from .storage import NvmeController, NvmeNamespace, NvmeSubsystem
+from .rpc_apis.storage import NvmeController, NvmeNamespace, NvmeSubsystem
 
 
 @click.group()
