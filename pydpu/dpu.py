@@ -2,14 +2,12 @@
 # Copyright (c) 2022 Dell Inc, or its subsidiaries.
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
-import grpc
-import importlib
 from connection import Connection
-from rpc_apis.common import CommonAPI
-from rpc_apis.inventory import InventoryAPI
-from rpc_apis.network import NetworkAPI
-from rpc_apis.security import SecurityAPI
-from rpc_apis.storage import StorageAPI
+from rpc_apis.v1.common import CommonAPI
+from rpc_apis.v1.inventory import InventoryAPI
+from rpc_apis.v1.network import NetworkAPI
+from rpc_apis.v1.security import SecurityAPI
+from rpc_apis.v1.storage import StorageAPI
 from baseAPI import Base
 
 
@@ -17,6 +15,7 @@ class Dpu(Base):
 
     def __init__(self):
         super(Dpu, self).__init__(None)
+
 
     def connect_grpc_insecure_channel(self, ip: str, port: int):
         """
@@ -28,50 +27,50 @@ class Dpu(Base):
         self._insecure_channel = connection.insecure_channel()
 
     @property
-    def common(self) -> CommonAPI:
+    def common(self):
         """
         Create the Common API instance
-        :return: common api
+        :return: common obj
         """
         if self._common_api_ is None:
             self._common_api_ = CommonAPI(self)
         return self._common_api_
 
     @property
-    def inventory(self) -> InventoryAPI:
+    def inventory(self):
         """
         Create the Inventory API instance
-        :return: inventory api
+        :return: inventory obj
         """
         if self._inventory_api_ is None:
             self._inventory_api_ = InventoryAPI(self)
         return self._inventory_api_
 
     @property
-    def network(self) -> NetworkAPI:
+    def network(self):
         """
-        Create the Security API instance
-        :return: security api
+        Create the Network API instance
+        :return: network obj
         """
         if self._network_api_ is None:
             self._network_api_ = NetworkAPI(self)
         return self._network_api_
 
     @property
-    def security(self) -> SecurityAPI:
+    def security(self):
         """
         Create the Security API instance
-        :return: security api
+        :return: security obj
         """
         if self._security_api_ is None:
             self._security_api_ = SecurityAPI(self)
         return self._security_api_
 
     @property
-    def storage(self) -> StorageAPI:
+    def storage(self):
         """
         Create the Storage API instance
-        :return: storage api
+        :return: storage obj
         """
         if self._storage_api_ is None:
             self._storage_api_ = StorageAPI(self)

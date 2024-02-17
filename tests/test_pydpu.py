@@ -1,7 +1,18 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2022 Dell Inc, or its subsidiaries.
 
-from pydpu.dpu import Dpu
+import sys
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+relative_path = "..\pydpu"
+
+absolute_path = os.path.join(current_dir, relative_path)
+
+sys.path.append(absolute_path)
+
+from dpu import Dpu
 
 import grpc
 
@@ -16,11 +27,11 @@ ipsec = dpu.security.ipsec
 
 ipsec_message = dpu.security.ipsec.ipsec_message
 
-ipsec.get_ipsec_version(ipsec_message.IPsecVersionReq())
+res = ipsec.get_ipsec_version(ipsec_message.IPsecVersionReq())
 
 # To get the IPsecStatsReq:
 
-ipsec.get_ipsec_stats(ipsec_message.IPsecStatsReq())
+res = ipsec.get_ipsec_stats(ipsec_message.IPsecStatsReq())
 
 # create tunnel 1
 
