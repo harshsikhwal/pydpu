@@ -7,7 +7,6 @@ from ..baseAPI import Base
 
 from ..proto_imports.security import *
 
-
 class IPSecAPI(Base):
     def __init__(self, parent):
         super(IPSecAPI, self).__init__(parent)

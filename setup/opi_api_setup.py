@@ -171,10 +171,10 @@ def generate_proto_imports():
         generated_proto_files = []
         for dirpath, _, filenames in os.walk(os.path.join(proto_folder, api)):
                 for filename in filenames:
-                    if filename.endswith(".py"):
+                    if filename.endswith(".py") and filename != "__init__.py":
                         generated_proto_files.append(filename.replace(".py", ""))
         # dump to file 
-        generated_proto_template = ""
+        generated_proto_template = """# SPDX-License-Identifier: Apache-2.0\n# Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.\n"""
         for proto_file in generated_proto_files:
             generated_proto_template = generated_proto_template + proto_import_template.format(root_api=api, python_file_name=proto_file)
         

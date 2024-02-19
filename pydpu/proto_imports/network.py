@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 from ..proto.network import networktypes_pb2
 from ..proto.network import networktypes_pb2_grpc
 from ..proto.network import openconfig_interfaces_pb2
