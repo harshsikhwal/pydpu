@@ -1,0 +1,247 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/Child",
+    "definitions": {
+        "Child": {
+            "required": [
+                "name",
+                "ag_proposals",
+                "esp_proposals",
+                "local_ts",
+                "remote_ts",
+                "rekey_time",
+                "life_time",
+                "rand_time",
+                "updown",
+                "inactivity",
+                "mark_in",
+                "mark_in_sa",
+                "mark_out",
+                "set_mark_in",
+                "set_mark_out",
+                "hw_offload"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Child SA name"
+                },
+                "ag_proposals": {
+                    "$ref": "#/definitions/opi_api.security.v1.Proposals",
+                    "additionalProperties": true
+                },
+                "esp_proposals": {
+                    "$ref": "#/definitions/opi_api.security.v1.Proposals",
+                    "additionalProperties": true
+                },
+                "local_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "remote_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "rekey_time": {
+                    "type": "integer"
+                },
+                "life_time": {
+                    "type": "integer"
+                },
+                "rand_time": {
+                    "type": "integer"
+                },
+                "updown": {
+                    "type": "string"
+                },
+                "inactivity": {
+                    "type": "integer"
+                },
+                "mark_in": {
+                    "type": "integer"
+                },
+                "mark_in_sa": {
+                    "type": "string"
+                },
+                "mark_out": {
+                    "type": "integer"
+                },
+                "set_mark_in": {
+                    "type": "integer"
+                },
+                "set_mark_out": {
+                    "type": "integer"
+                },
+                "hw_offload": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Child",
+            "description": "Child SA"
+        },
+        "opi_api.security.v1.Proposals": {
+            "required": [
+                "crypto_alg",
+                "integ_alg",
+                "prf",
+                "dhgroups"
+            ],
+            "properties": {
+                "crypto_alg": {
+                    "items": {
+                        "enum": [
+                            "CRYPTO_ALGORITHM_UNSPECIFIED",
+                            0,
+                            "CRYPTO_ALGORITHM_AES128",
+                            1,
+                            "CRYPTO_ALGORITHM_AES192",
+                            2,
+                            "CRYPTO_ALGORITHM_AES256",
+                            3,
+                            "CRYPTO_ALGORITHM_AES128GCM128",
+                            4,
+                            "CRYPTO_ALGORITHM_AES256GCM128",
+                            5,
+                            "CRYPTO_ALGORITHM_AES128GMAC",
+                            6,
+                            "CRYPTO_ALGORITHM_AES256GMAC",
+                            7
+                        ]
+                    },
+                    "type": "array",
+                    "title": "Crypto Algorithm",
+                    "description": "Cryptographic algorithm for encryption"
+                },
+                "integ_alg": {
+                    "items": {
+                        "enum": [
+                            "INTEG_ALGORITHM_UNSPECIFIED",
+                            0,
+                            "INTEG_ALGORITHM_MD5",
+                            1,
+                            "INTEG_ALGORITHM_MD5_128",
+                            2,
+                            "INTEG_ALGORITHM_SHA1",
+                            3,
+                            "INTEG_ALGORITHM_SHA1_160",
+                            4,
+                            "INTEG_ALGORITHM_SHA256",
+                            5,
+                            "INTEG_ALGORITHM_SHA384",
+                            7,
+                            "INTEG_ALGORITHM_SHA512",
+                            8,
+                            "INTEG_ALGORITHM_SHA256_96",
+                            9
+                        ]
+                    },
+                    "type": "array",
+                    "title": "Integ Algorithm",
+                    "description": "Cryptographic algorithm for authentication"
+                },
+                "prf": {
+                    "items": {
+                        "enum": [
+                            "PR_FUNCTION_UNSPECIFIED",
+                            0,
+                            "PR_FUNCTION_MD5",
+                            1,
+                            "PR_FUNCTION_SHA1",
+                            2,
+                            "PR_FUNCTION_AESXCBC",
+                            3,
+                            "PR_FUNCTION_AESCMAC",
+                            4,
+                            "PR_FUNCTION_SHA256",
+                            5,
+                            "PR_FUNCTION_SHA384",
+                            6,
+                            "PR_FUNCTION_SHA512",
+                            7
+                        ]
+                    },
+                    "type": "array",
+                    "title": "PR Function",
+                    "description": "Pesudo Random Function"
+                },
+                "dhgroups": {
+                    "items": {
+                        "enum": [
+                            "DH_GROUPS_UNSPECIFIED",
+                            0,
+                            "DH_GROUPS_MODP768",
+                            1,
+                            "DH_GROUPS_MODP1024",
+                            2,
+                            "DH_GROUPS_MODP1536",
+                            3,
+                            "DH_GROUPS_MODP2048",
+                            4,
+                            "DH_GROUPS_MODP3072",
+                            5,
+                            "DH_GROUPS_MODP4096",
+                            6,
+                            "DH_GROUPS_MODP6144",
+                            7,
+                            "DH_GROUPS_MODP8192",
+                            8,
+                            "DH_GROUPS_MODP1024S160",
+                            9,
+                            "DH_GROUPS_MODP2048S224",
+                            10,
+                            "DH_GROUPS_MODP2048S256",
+                            11,
+                            "DH_GROUPS_CURVE25519",
+                            12
+                        ]
+                    },
+                    "type": "array",
+                    "title": "DH Groups",
+                    "description": "Diffie Hellman Groups"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Proposals"
+        },
+        "opi_api.security.v1.TrafficSelectors": {
+            "required": [
+                "ts"
+            ],
+            "properties": {
+                "ts": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors.TrafficSelector"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selectors"
+        },
+        "opi_api.security.v1.TrafficSelectors.TrafficSelector": {
+            "required": [
+                "cidr",
+                "proto",
+                "port"
+            ],
+            "properties": {
+                "cidr": {
+                    "type": "string"
+                },
+                "proto": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selector"
+        }
+    }
+}

@@ -1,0 +1,130 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPEntry",
+    "definitions": {
+        "IPEntry": {
+            "properties": {
+                "prefix": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPPrefix",
+                    "additionalProperties": true,
+                    "description": "IP prefix"
+                },
+                "range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.AddressRange",
+                    "additionalProperties": true,
+                    "description": "IP range"
+                },
+                "tag": {
+                    "type": "integer",
+                    "description": "tag that represents IP addres/pfx/range, range:1-4294967294"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Entry",
+            "description": "IPEntry represents any form of IP address/prefix/range/tag etc."
+        },
+        "opi_api.network.opinetcommon.v1alpha1.AddressRange": {
+            "properties": {
+                "ipv4_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPRange",
+                    "additionalProperties": true,
+                    "description": "IPv4 address range"
+                },
+                "ipv6_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPRange",
+                    "additionalProperties": true,
+                    "description": "IPv6 address range"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Address Range",
+            "description": "AddressRange represents an IPv4 or IPv6 address range"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPAddress": {
+            "required": [
+                "af"
+            ],
+            "properties": {
+                "af": {
+                    "enum": [
+                        "IP_AF_UNSPECIFIED",
+                        0,
+                        "IP_AF_INET",
+                        1,
+                        "IP_AF_INET6",
+                        2
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Ip Af",
+                    "description": "IP address families"
+                },
+                "v4_addr": {
+                    "type": "integer",
+                    "description": "IPv4 address (-- api-linter: core::0141::forbidden-types=disabled     aip.dev/not-precedent: must use fixed32 --)"
+                },
+                "v6_addr": {
+                    "type": "string",
+                    "description": "IPv6 address",
+                    "format": "binary",
+                    "binaryEncoding": "base64"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Address",
+            "description": "IP Address object"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPPrefix": {
+            "required": [
+                "addr",
+                "len"
+            ],
+            "properties": {
+                "addr": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "IP prefix address"
+                },
+                "len": {
+                    "type": "integer",
+                    "description": "IP Prefix length (range:0-128)"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Prefix",
+            "description": "IP Prefix object"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPRange": {
+            "required": [
+                "low",
+                "high"
+            ],
+            "properties": {
+                "low": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "starting IP address"
+                },
+                "high": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "ending IP address"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Range",
+            "description": "IP Range"
+        }
+    }
+}

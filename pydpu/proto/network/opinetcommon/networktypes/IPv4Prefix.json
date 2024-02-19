@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPv4Prefix",
+    "definitions": {
+        "IPv4Prefix": {
+            "required": [
+                "addr",
+                "len"
+            ],
+            "properties": {
+                "addr": {
+                    "type": "integer",
+                    "description": "IPv4 address portion (-- api-linter: core::0141::forbidden-types=disabled     aip.dev/not-precedent: must use fixed32 --)"
+                },
+                "len": {
+                    "type": "integer",
+                    "description": "prefix length; range:0-32"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Pv 4 Prefix",
+            "description": "IPv4 Prefix"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecInitiateResponse",
+    "definitions": {
+        "IPsecInitiateResponse": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec Initiate Response",
+            "description": "Intentionally empty"
+        }
+    }
+}

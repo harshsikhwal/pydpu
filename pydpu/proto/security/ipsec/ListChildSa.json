@@ -1,0 +1,91 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/ListChildSa",
+    "definitions": {
+        "ListChildSa": {
+            "required": [
+                "name",
+                "protocol",
+                "encap",
+                "spi_in",
+                "spi_out",
+                "cpi_in",
+                "cpi_out",
+                "mark_in",
+                "mark_mask_in",
+                "mark_out",
+                "mark_mask_out",
+                "if_id_in",
+                "if_id_out",
+                "encr_alg",
+                "encr_keysize",
+                "integ_alg",
+                "integ_keysize",
+                "dh_group",
+                "esn"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "encap": {
+                    "type": "string"
+                },
+                "spi_in": {
+                    "type": "string"
+                },
+                "spi_out": {
+                    "type": "string"
+                },
+                "cpi_in": {
+                    "type": "string"
+                },
+                "cpi_out": {
+                    "type": "string"
+                },
+                "mark_in": {
+                    "type": "string"
+                },
+                "mark_mask_in": {
+                    "type": "string"
+                },
+                "mark_out": {
+                    "type": "string"
+                },
+                "mark_mask_out": {
+                    "type": "string"
+                },
+                "if_id_in": {
+                    "type": "string"
+                },
+                "if_id_out": {
+                    "type": "string"
+                },
+                "encr_alg": {
+                    "type": "string"
+                },
+                "encr_keysize": {
+                    "type": "string"
+                },
+                "integ_alg": {
+                    "type": "string"
+                },
+                "integ_keysize": {
+                    "type": "string"
+                },
+                "dh_group": {
+                    "type": "string"
+                },
+                "esn": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Child Sa"
+        }
+    }
+}

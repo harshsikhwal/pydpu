@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/CertPolicy",
+    "definitions": {
+        "CertPolicy": {
+            "required": [
+                "cert_policy"
+            ],
+            "properties": {
+                "cert_policy": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Cert Policy"
+        }
+    }
+}

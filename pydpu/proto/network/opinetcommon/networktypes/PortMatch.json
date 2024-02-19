@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/PortMatch",
+    "definitions": {
+        "PortMatch": {
+            "required": [
+                "src_port_range",
+                "dst_port_range"
+            ],
+            "properties": {
+                "src_port_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange",
+                    "additionalProperties": true,
+                    "description": "source port range"
+                },
+                "dst_port_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange",
+                    "additionalProperties": true,
+                    "description": "destination port range"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Port Match",
+            "description": "TCP/UDP rule match criteria"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.PortRange": {
+            "required": [
+                "port_low",
+                "port_high"
+            ],
+            "properties": {
+                "port_low": {
+                    "type": "integer",
+                    "description": "range:0-65535"
+                },
+                "port_high": {
+                    "type": "integer",
+                    "description": "range:0-65535"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Port Range",
+            "description": "PortRange object has low and high end of the port ranges"
+        }
+    }
+}

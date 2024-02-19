@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/ICMPMatchList",
+    "definitions": {
+        "ICMPMatchList": {
+            "required": [
+                "icmp_match_list"
+            ],
+            "properties": {
+                "icmp_match_list": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.ICMPMatch"
+                    },
+                    "type": "array",
+                    "description": "ICMP type/code list"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "ICMP Match List",
+            "description": "ICMP type/code match condition list"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.ICMPMatch": {
+            "properties": {
+                "type": {
+                    "type": "integer",
+                    "description": "match any ICMP type"
+                },
+                "type_wildcard": {
+                    "enum": [
+                        "WILDCARD_MATCH_NONE",
+                        0,
+                        "WILDCARD_MATCH_ANY",
+                        256
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Wildcard Match",
+                    "description": "WildcardMatch options"
+                },
+                "code": {
+                    "type": "integer",
+                    "description": "match any ICMP code"
+                },
+                "code_wildcard": {
+                    "enum": [
+                        "WILDCARD_MATCH_NONE",
+                        0,
+                        "WILDCARD_MATCH_ANY",
+                        256
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Wildcard Match",
+                    "description": "WildcardMatch options"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "ICMP Match",
+            "description": "ICMPv4/ICMPv6 rule match criteria"
+        }
+    }
+}

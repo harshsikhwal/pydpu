@@ -1,0 +1,312 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecListSasResponse",
+    "definitions": {
+        "IPsecListSasResponse": {
+            "required": [
+                "ikesas"
+            ],
+            "properties": {
+                "ikesas": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.ListIkeSa"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec List Sas Response"
+        },
+        "opi_api.security.v1.ListChildSa": {
+            "required": [
+                "name",
+                "protocol",
+                "encap",
+                "spi_in",
+                "spi_out",
+                "cpi_in",
+                "cpi_out",
+                "mark_in",
+                "mark_mask_in",
+                "mark_out",
+                "mark_mask_out",
+                "if_id_in",
+                "if_id_out",
+                "encr_alg",
+                "encr_keysize",
+                "integ_alg",
+                "integ_keysize",
+                "dh_group",
+                "esn"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "encap": {
+                    "type": "string"
+                },
+                "spi_in": {
+                    "type": "string"
+                },
+                "spi_out": {
+                    "type": "string"
+                },
+                "cpi_in": {
+                    "type": "string"
+                },
+                "cpi_out": {
+                    "type": "string"
+                },
+                "mark_in": {
+                    "type": "string"
+                },
+                "mark_mask_in": {
+                    "type": "string"
+                },
+                "mark_out": {
+                    "type": "string"
+                },
+                "mark_mask_out": {
+                    "type": "string"
+                },
+                "if_id_in": {
+                    "type": "string"
+                },
+                "if_id_out": {
+                    "type": "string"
+                },
+                "encr_alg": {
+                    "type": "string"
+                },
+                "encr_keysize": {
+                    "type": "string"
+                },
+                "integ_alg": {
+                    "type": "string"
+                },
+                "integ_keysize": {
+                    "type": "string"
+                },
+                "dh_group": {
+                    "type": "string"
+                },
+                "esn": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Child Sa"
+        },
+        "opi_api.security.v1.ListIkeSa": {
+            "required": [
+                "name",
+                "uniqueid",
+                "version",
+                "ikestate",
+                "local_host",
+                "local_port",
+                "local_id",
+                "remote_host",
+                "remote_port",
+                "remote_id",
+                "remote_xauth_id",
+                "remote_eap_id",
+                "initiator",
+                "initiator_spi",
+                "responder_spi",
+                "nat_local",
+                "nat_remote",
+                "nat_fake",
+                "nat_any",
+                "if_id_in",
+                "if_id_out",
+                "encr_alg",
+                "encr_keysize",
+                "integ_alg",
+                "integ_keysize",
+                "prf_alg",
+                "dh_group",
+                "ppk",
+                "established",
+                "rekey_time",
+                "reauth_time",
+                "local_vips",
+                "remote_vips",
+                "tasks_queued",
+                "tasks_active",
+                "tasks_passive",
+                "childsas"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "IKE_SA name"
+                },
+                "uniqueid": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "ikestate": {
+                    "enum": [
+                        "IKE_SA_STATE_UNSPECIFIED",
+                        0,
+                        "IKE_SA_STATE_CREATED",
+                        1,
+                        "IKE_SA_STATE_CONNECTING",
+                        2,
+                        "IKE_SA_STATE_ESTABLISHED",
+                        3,
+                        "IKE_SA_STATE_PASSIVE",
+                        4,
+                        "IKE_SA_STATE_REKEYING",
+                        5,
+                        "IKE_SA_STATE_REKEYED",
+                        6,
+                        "IKE_SA_STATE_DELETING",
+                        7,
+                        "IKE_SA_STATE_DESTROYING",
+                        8
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Ike Sa State",
+                    "description": "IKE_SA state"
+                },
+                "local_host": {
+                    "type": "string"
+                },
+                "local_port": {
+                    "type": "string"
+                },
+                "local_id": {
+                    "type": "string"
+                },
+                "remote_host": {
+                    "type": "string"
+                },
+                "remote_port": {
+                    "type": "string"
+                },
+                "remote_id": {
+                    "type": "string"
+                },
+                "remote_xauth_id": {
+                    "type": "string"
+                },
+                "remote_eap_id": {
+                    "type": "string"
+                },
+                "initiator": {
+                    "type": "string"
+                },
+                "initiator_spi": {
+                    "type": "string"
+                },
+                "responder_spi": {
+                    "type": "string"
+                },
+                "nat_local": {
+                    "type": "string"
+                },
+                "nat_remote": {
+                    "type": "string"
+                },
+                "nat_fake": {
+                    "type": "string"
+                },
+                "nat_any": {
+                    "type": "string"
+                },
+                "if_id_in": {
+                    "type": "string"
+                },
+                "if_id_out": {
+                    "type": "string"
+                },
+                "encr_alg": {
+                    "type": "string"
+                },
+                "encr_keysize": {
+                    "type": "string"
+                },
+                "integ_alg": {
+                    "type": "string"
+                },
+                "integ_keysize": {
+                    "type": "string"
+                },
+                "prf_alg": {
+                    "type": "string"
+                },
+                "dh_group": {
+                    "type": "string"
+                },
+                "ppk": {
+                    "type": "string"
+                },
+                "established": {
+                    "type": "string"
+                },
+                "rekey_time": {
+                    "type": "string"
+                },
+                "reauth_time": {
+                    "type": "string"
+                },
+                "local_vips": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "remote_vips": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "tasks_queued": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "tasks_active": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "tasks_passive": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "childsas": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.ListChildSa"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Ike Sa"
+        }
+    }
+}

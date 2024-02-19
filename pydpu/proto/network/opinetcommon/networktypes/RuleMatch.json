@@ -1,0 +1,404 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/RuleMatch",
+    "definitions": {
+        "RuleMatch": {
+            "required": [
+                "l3_match",
+                "l4_match"
+            ],
+            "properties": {
+                "l3_match": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.RuleL3Match",
+                    "additionalProperties": true,
+                    "description": "Layer 3 match criteria"
+                },
+                "l4_match": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.RuleL4Match",
+                    "additionalProperties": true,
+                    "description": "Layer 4 match criteria"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Rule Match",
+            "description": "rule match criteria"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.AddressRange": {
+            "properties": {
+                "ipv4_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPRange",
+                    "additionalProperties": true,
+                    "description": "IPv4 address range"
+                },
+                "ipv6_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPRange",
+                    "additionalProperties": true,
+                    "description": "IPv6 address range"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Address Range",
+            "description": "AddressRange represents an IPv4 or IPv6 address range"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.ICMPMatch": {
+            "properties": {
+                "type": {
+                    "type": "integer",
+                    "description": "match any ICMP type"
+                },
+                "type_wildcard": {
+                    "enum": [
+                        "WILDCARD_MATCH_NONE",
+                        0,
+                        "WILDCARD_MATCH_ANY",
+                        256
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Wildcard Match",
+                    "description": "WildcardMatch options"
+                },
+                "code": {
+                    "type": "integer",
+                    "description": "match any ICMP code"
+                },
+                "code_wildcard": {
+                    "enum": [
+                        "WILDCARD_MATCH_NONE",
+                        0,
+                        "WILDCARD_MATCH_ANY",
+                        256
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Wildcard Match",
+                    "description": "WildcardMatch options"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "ICMP Match",
+            "description": "ICMPv4/ICMPv6 rule match criteria"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.ICMPMatchList": {
+            "required": [
+                "icmp_match_list"
+            ],
+            "properties": {
+                "icmp_match_list": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.ICMPMatch"
+                    },
+                    "type": "array",
+                    "description": "ICMP type/code list"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "ICMP Match List",
+            "description": "ICMP type/code match condition list"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPAddress": {
+            "required": [
+                "af"
+            ],
+            "properties": {
+                "af": {
+                    "enum": [
+                        "IP_AF_UNSPECIFIED",
+                        0,
+                        "IP_AF_INET",
+                        1,
+                        "IP_AF_INET6",
+                        2
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Ip Af",
+                    "description": "IP address families"
+                },
+                "v4_addr": {
+                    "type": "integer",
+                    "description": "IPv4 address (-- api-linter: core::0141::forbidden-types=disabled     aip.dev/not-precedent: must use fixed32 --)"
+                },
+                "v6_addr": {
+                    "type": "string",
+                    "description": "IPv6 address",
+                    "format": "binary",
+                    "binaryEncoding": "base64"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Address",
+            "description": "IP Address object"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPEntry": {
+            "properties": {
+                "prefix": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPPrefix",
+                    "additionalProperties": true,
+                    "description": "IP prefix"
+                },
+                "range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.AddressRange",
+                    "additionalProperties": true,
+                    "description": "IP range"
+                },
+                "tag": {
+                    "type": "integer",
+                    "description": "tag that represents IP addres/pfx/range, range:1-4294967294"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Entry",
+            "description": "IPEntry represents any form of IP address/prefix/range/tag etc."
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPList": {
+            "required": [
+                "ip_entries"
+            ],
+            "properties": {
+                "ip_entries": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPEntry"
+                    },
+                    "type": "array",
+                    "description": "list of ip entries (prefix, range)"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP List",
+            "description": "IPList is a list of IPEntry objects"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPPrefix": {
+            "required": [
+                "addr",
+                "len"
+            ],
+            "properties": {
+                "addr": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "IP prefix address"
+                },
+                "len": {
+                    "type": "integer",
+                    "description": "IP Prefix length (range:0-128)"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Prefix",
+            "description": "IP Prefix object"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPRange": {
+            "required": [
+                "low",
+                "high"
+            ],
+            "properties": {
+                "low": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "starting IP address"
+                },
+                "high": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "ending IP address"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Range",
+            "description": "IP Range"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.PortListMatch": {
+            "required": [
+                "src_port_range",
+                "dst_port_range"
+            ],
+            "properties": {
+                "src_port_range": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange"
+                    },
+                    "type": "array",
+                    "description": "list of source ports or port ranges"
+                },
+                "dst_port_range": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange"
+                    },
+                    "type": "array",
+                    "description": "list of destination ports or port ranges"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Port List Match",
+            "description": "TCP/UDP source and destination port list"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.PortMatch": {
+            "required": [
+                "src_port_range",
+                "dst_port_range"
+            ],
+            "properties": {
+                "src_port_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange",
+                    "additionalProperties": true,
+                    "description": "source port range"
+                },
+                "dst_port_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortRange",
+                    "additionalProperties": true,
+                    "description": "destination port range"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Port Match",
+            "description": "TCP/UDP rule match criteria"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.PortRange": {
+            "required": [
+                "port_low",
+                "port_high"
+            ],
+            "properties": {
+                "port_low": {
+                    "type": "integer",
+                    "description": "range:0-65535"
+                },
+                "port_high": {
+                    "type": "integer",
+                    "description": "range:0-65535"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Port Range",
+            "description": "PortRange object has low and high end of the port ranges"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.RuleL3Match": {
+            "properties": {
+                "proto_num": {
+                    "type": "integer",
+                    "description": "protocol number"
+                },
+                "proto_wild_card": {
+                    "enum": [
+                        "WILDCARD_MATCH_NONE",
+                        0,
+                        "WILDCARD_MATCH_ANY",
+                        256
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Wildcard Match",
+                    "description": "WildcardMatch options"
+                },
+                "src_prefix": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPPrefix",
+                    "additionalProperties": true,
+                    "description": "ip prefix"
+                },
+                "src_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.AddressRange",
+                    "additionalProperties": true,
+                    "description": "source ip address range"
+                },
+                "src_tag": {
+                    "type": "integer",
+                    "description": "source tag for the range (range:1-429496729)"
+                },
+                "src_ip_list": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPList",
+                    "additionalProperties": true,
+                    "description": "ip list"
+                },
+                "dst_prefix": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPPrefix",
+                    "additionalProperties": true,
+                    "description": "ip prefix"
+                },
+                "dst_range": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.AddressRange",
+                    "additionalProperties": true,
+                    "description": "destination ip range"
+                },
+                "dst_tag": {
+                    "type": "integer",
+                    "description": "destination tag (range:1-429496729)"
+                },
+                "dst_ip_list": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPList",
+                    "additionalProperties": true,
+                    "description": "ip list"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Rule L 3 Match",
+            "description": "L3 rule match criteria"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.RuleL4Match": {
+            "properties": {
+                "ports": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortMatch",
+                    "additionalProperties": true,
+                    "description": "source and/or destination ports/ranges"
+                },
+                "type_code": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.ICMPMatch",
+                    "additionalProperties": true,
+                    "description": "ICMP type/code match criteria"
+                },
+                "port_list": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.PortListMatch",
+                    "additionalProperties": true,
+                    "description": "list of source and/or destination ports/ranges"
+                },
+                "icmp_match_list": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.ICMPMatchList",
+                    "additionalProperties": true,
+                    "description": "list ICMP type/code match criteria"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Rule L 4 Match",
+            "description": "L4 rule match criteria"
+        }
+    }
+}

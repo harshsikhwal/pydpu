@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/ListCert",
+    "definitions": {
+        "ListCert": {
+            "required": [
+                "type",
+                "flag",
+                "hasprivkey",
+                "data",
+                "subject",
+                "notbefore",
+                "notafter"
+            ],
+            "properties": {
+                "type": {
+                    "enum": [
+                        "CERTIFICATE_TYPE_X509_UNSPECIFIED",
+                        0,
+                        "CERTIFICATE_TYPE_X509_AC",
+                        1,
+                        "CERTIFICATE_TYPE_X509_CRL",
+                        2,
+                        "CERTIFICATE_TYPE_OCSP_RESPONSE",
+                        3,
+                        "CERTIFICATE_TYPE_PUBKEY",
+                        4
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Certificate Type",
+                    "description": "Certificate type"
+                },
+                "flag": {
+                    "enum": [
+                        "X509_CERTIFICATE_FLAG_UNSPECIFIED",
+                        0,
+                        "X509_CERTIFICATE_FLAG_CA",
+                        1,
+                        "X509_CERTIFICATE_FLAG_AA",
+                        2,
+                        "X509_CERTIFICATE_FLAG_OCSP",
+                        3
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "X 509 Certificate Flag",
+                    "description": "X.509 certificate flag"
+                },
+                "hasprivkey": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "notbefore": {
+                    "type": "string"
+                },
+                "notafter": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Cert",
+            "description": "list-cert"
+        }
+    }
+}

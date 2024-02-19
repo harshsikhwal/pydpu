@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/Encap",
+    "definitions": {
+        "Encap": {
+            "required": [
+                "type",
+                "value"
+            ],
+            "properties": {
+                "type": {
+                    "enum": [
+                        "ENCAP_TYPE_UNSPECIFIED",
+                        0,
+                        "ENCAP_TYPE_DOT1Q",
+                        1,
+                        "ENCAP_TYPE_MPLS_OVER_UDP",
+                        2,
+                        "ENCAP_TYPE_VXLAN",
+                        3,
+                        "ENCAP_TYPE_NVGRE",
+                        4
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Encap Type",
+                    "description": "encap types in the network"
+                },
+                "value": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.EncapVal",
+                    "additionalProperties": true,
+                    "description": "encap value"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Encap",
+            "description": "fabric encap"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.EncapVal": {
+            "properties": {
+                "vlan_id": {
+                    "type": "integer",
+                    "description": "vlan id for DOT1Q"
+                },
+                "mpls_tag": {
+                    "type": "integer",
+                    "description": "MPLS tag/slot for MPLS over UDP"
+                },
+                "vnid": {
+                    "type": "integer",
+                    "description": "VXLAN VNID (24bit value)"
+                },
+                "vsid": {
+                    "type": "integer",
+                    "description": "NVGRE VSID"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Encap Val",
+            "description": "tag values for various encap types"
+        }
+    }
+}

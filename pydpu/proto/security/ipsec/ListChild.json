@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/ListChild",
+    "definitions": {
+        "ListChild": {
+            "required": [
+                "name",
+                "mode",
+                "label",
+                "rekey_time",
+                "rekey_bytes",
+                "rekey_packets",
+                "dpd_action",
+                "close_action",
+                "local_ts",
+                "remote_ts",
+                "interface",
+                "priority"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Child SA name"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "rekey_time": {
+                    "type": "integer"
+                },
+                "rekey_bytes": {
+                    "type": "integer"
+                },
+                "rekey_packets": {
+                    "type": "integer"
+                },
+                "dpd_action": {
+                    "type": "string"
+                },
+                "close_action": {
+                    "type": "string"
+                },
+                "local_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "remote_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "interface": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Child"
+        },
+        "opi_api.security.v1.TrafficSelectors": {
+            "required": [
+                "ts"
+            ],
+            "properties": {
+                "ts": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors.TrafficSelector"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selectors"
+        },
+        "opi_api.security.v1.TrafficSelectors.TrafficSelector": {
+            "required": [
+                "cidr",
+                "proto",
+                "port"
+            ],
+            "properties": {
+                "cidr": {
+                    "type": "string"
+                },
+                "proto": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selector"
+        }
+    }
+}

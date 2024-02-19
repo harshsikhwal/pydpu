@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/HwHandle",
+    "definitions": {
+        "HwHandle": {
+            "required": [
+                "idx"
+            ],
+            "properties": {
+                "idx": {
+                    "type": "string",
+                    "description": "hardware handle (-- api-linter: core::0141::forbidden-types=disabled     aip.dev/not-precedent: hw handle must be uint64. --)"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Hw Handle",
+            "description": "Opaque handle to identify the index in hardware"
+        }
+    }
+}

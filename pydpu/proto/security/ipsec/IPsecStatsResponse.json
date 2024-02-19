@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecStatsResponse",
+    "definitions": {
+        "IPsecStatsResponse": {
+            "required": [
+                "status"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "description": "Generic status string for now"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec Stats Response"
+        }
+    }
+}

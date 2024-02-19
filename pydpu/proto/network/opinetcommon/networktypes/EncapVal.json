@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/EncapVal",
+    "definitions": {
+        "EncapVal": {
+            "properties": {
+                "vlan_id": {
+                    "type": "integer",
+                    "description": "vlan id for DOT1Q"
+                },
+                "mpls_tag": {
+                    "type": "integer",
+                    "description": "MPLS tag/slot for MPLS over UDP"
+                },
+                "vnid": {
+                    "type": "integer",
+                    "description": "VXLAN VNID (24bit value)"
+                },
+                "vsid": {
+                    "type": "integer",
+                    "description": "NVGRE VSID"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Encap Val",
+            "description": "tag values for various encap types"
+        }
+    }
+}

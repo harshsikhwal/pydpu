@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecRekeyRequest",
+    "definitions": {
+        "IPsecRekeyRequest": {
+            "required": [
+                "child",
+                "ike",
+                "child_id",
+                "ike_id",
+                "reauth"
+            ],
+            "properties": {
+                "child": {
+                    "type": "string"
+                },
+                "ike": {
+                    "type": "string"
+                },
+                "child_id": {
+                    "type": "string"
+                },
+                "ike_id": {
+                    "type": "string"
+                },
+                "reauth": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec Rekey Request"
+        }
+    }
+}

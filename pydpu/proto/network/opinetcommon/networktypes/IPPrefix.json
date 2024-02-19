@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPPrefix",
+    "definitions": {
+        "IPPrefix": {
+            "required": [
+                "addr",
+                "len"
+            ],
+            "properties": {
+                "addr": {
+                    "$ref": "#/definitions/opi_api.network.opinetcommon.v1alpha1.IPAddress",
+                    "additionalProperties": true,
+                    "description": "IP prefix address"
+                },
+                "len": {
+                    "type": "integer",
+                    "description": "IP Prefix length (range:0-128)"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Prefix",
+            "description": "IP Prefix object"
+        },
+        "opi_api.network.opinetcommon.v1alpha1.IPAddress": {
+            "required": [
+                "af"
+            ],
+            "properties": {
+                "af": {
+                    "enum": [
+                        "IP_AF_UNSPECIFIED",
+                        0,
+                        "IP_AF_INET",
+                        1,
+                        "IP_AF_INET6",
+                        2
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Ip Af",
+                    "description": "IP address families"
+                },
+                "v4_addr": {
+                    "type": "integer",
+                    "description": "IPv4 address (-- api-linter: core::0141::forbidden-types=disabled     aip.dev/not-precedent: must use fixed32 --)"
+                },
+                "v6_addr": {
+                    "type": "string",
+                    "description": "IPv6 address",
+                    "format": "binary",
+                    "binaryEncoding": "base64"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "IP Address",
+            "description": "IP Address object"
+        }
+    }
+}

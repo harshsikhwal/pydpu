@@ -1,0 +1,331 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/ListConnResp",
+    "definitions": {
+        "ListConnResp": {
+            "required": [
+                "name",
+                "local_addrs",
+                "remote_addrs",
+                "version",
+                "reauth_time",
+                "rekey_time",
+                "unique",
+                "dpd_delay",
+                "dpd_timeout",
+                "ppk",
+                "ppk_required",
+                "local_auth",
+                "remote_auth",
+                "children"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Connection name"
+                },
+                "local_addrs": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.Addrs"
+                    },
+                    "type": "array"
+                },
+                "remote_addrs": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.Addrs"
+                    },
+                    "type": "array"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "reauth_time": {
+                    "type": "integer"
+                },
+                "rekey_time": {
+                    "type": "integer"
+                },
+                "unique": {
+                    "type": "string"
+                },
+                "dpd_delay": {
+                    "type": "integer"
+                },
+                "dpd_timeout": {
+                    "type": "integer"
+                },
+                "ppk": {
+                    "type": "string"
+                },
+                "ppk_required": {
+                    "type": "string"
+                },
+                "local_auth": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.ListConnAuth"
+                    },
+                    "type": "array"
+                },
+                "remote_auth": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.ListConnAuth"
+                    },
+                    "type": "array"
+                },
+                "children": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.ListChild"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Conn Resp"
+        },
+        "opi_api.security.v1.Addrs": {
+            "required": [
+                "addr"
+            ],
+            "properties": {
+                "addr": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Addrs",
+            "description": "IP addresses or hostanmes"
+        },
+        "opi_api.security.v1.CaCerts": {
+            "required": [
+                "cacert"
+            ],
+            "properties": {
+                "cacert": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Ca Certs"
+        },
+        "opi_api.security.v1.CertPolicy": {
+            "required": [
+                "cert_policy"
+            ],
+            "properties": {
+                "cert_policy": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Cert Policy"
+        },
+        "opi_api.security.v1.Certs": {
+            "required": [
+                "cert"
+            ],
+            "properties": {
+                "cert": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Certs"
+        },
+        "opi_api.security.v1.Groups": {
+            "required": [
+                "group"
+            ],
+            "properties": {
+                "group": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Groups"
+        },
+        "opi_api.security.v1.ListChild": {
+            "required": [
+                "name",
+                "mode",
+                "label",
+                "rekey_time",
+                "rekey_bytes",
+                "rekey_packets",
+                "dpd_action",
+                "close_action",
+                "local_ts",
+                "remote_ts",
+                "interface",
+                "priority"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Child SA name"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "rekey_time": {
+                    "type": "integer"
+                },
+                "rekey_bytes": {
+                    "type": "integer"
+                },
+                "rekey_packets": {
+                    "type": "integer"
+                },
+                "dpd_action": {
+                    "type": "string"
+                },
+                "close_action": {
+                    "type": "string"
+                },
+                "local_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "remote_ts": {
+                    "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors",
+                    "additionalProperties": true
+                },
+                "interface": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Child"
+        },
+        "opi_api.security.v1.ListConnAuth": {
+            "required": [
+                "class",
+                "eaptype",
+                "eapvendor",
+                "xauth",
+                "revocation",
+                "id",
+                "ca_id",
+                "aaa_id",
+                "eap_id",
+                "xauth_id",
+                "group",
+                "cert_policy",
+                "certs",
+                "cacerts"
+            ],
+            "properties": {
+                "class": {
+                    "type": "string"
+                },
+                "eaptype": {
+                    "type": "string"
+                },
+                "eapvendor": {
+                    "type": "string"
+                },
+                "xauth": {
+                    "type": "string"
+                },
+                "revocation": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ca_id": {
+                    "type": "string"
+                },
+                "aaa_id": {
+                    "type": "string"
+                },
+                "eap_id": {
+                    "type": "string"
+                },
+                "xauth_id": {
+                    "type": "string"
+                },
+                "group": {
+                    "$ref": "#/definitions/opi_api.security.v1.Groups",
+                    "additionalProperties": true
+                },
+                "cert_policy": {
+                    "$ref": "#/definitions/opi_api.security.v1.CertPolicy",
+                    "additionalProperties": true
+                },
+                "certs": {
+                    "$ref": "#/definitions/opi_api.security.v1.Certs",
+                    "additionalProperties": true
+                },
+                "cacerts": {
+                    "$ref": "#/definitions/opi_api.security.v1.CaCerts",
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "List Conn Auth"
+        },
+        "opi_api.security.v1.TrafficSelectors": {
+            "required": [
+                "ts"
+            ],
+            "properties": {
+                "ts": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors.TrafficSelector"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selectors"
+        },
+        "opi_api.security.v1.TrafficSelectors.TrafficSelector": {
+            "required": [
+                "cidr",
+                "proto",
+                "port"
+            ],
+            "properties": {
+                "cidr": {
+                    "type": "string"
+                },
+                "proto": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selector"
+        }
+    }
+}

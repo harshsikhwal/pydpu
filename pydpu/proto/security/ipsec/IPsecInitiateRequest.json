@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecInitiateRequest",
+    "definitions": {
+        "IPsecInitiateRequest": {
+            "required": [
+                "child",
+                "ike",
+                "timeout",
+                "loglevel"
+            ],
+            "properties": {
+                "child": {
+                    "type": "string"
+                },
+                "ike": {
+                    "type": "string"
+                },
+                "timeout": {
+                    "type": "string"
+                },
+                "loglevel": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec Initiate Request"
+        }
+    }
+}

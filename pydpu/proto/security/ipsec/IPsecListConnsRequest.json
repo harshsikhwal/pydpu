@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPsecListConnsRequest",
+    "definitions": {
+        "IPsecListConnsRequest": {
+            "required": [
+                "ike"
+            ],
+            "properties": {
+                "ike": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Psec List Conns Request"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/IPv6Prefix",
+    "definitions": {
+        "IPv6Prefix": {
+            "required": [
+                "addr",
+                "len"
+            ],
+            "properties": {
+                "addr": {
+                    "type": "string",
+                    "description": "IPv6 address bytes",
+                    "format": "binary",
+                    "binaryEncoding": "base64"
+                },
+                "len": {
+                    "type": "integer",
+                    "description": "prefix length: range:0-128"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "I Pv 6 Prefix",
+            "description": "IPv6 Prefix"
+        }
+    }
+}

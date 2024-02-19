@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/Certs",
+    "definitions": {
+        "Certs": {
+            "required": [
+                "cert"
+            ],
+            "properties": {
+                "cert": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Certs"
+        }
+    }
+}

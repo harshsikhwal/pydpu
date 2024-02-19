@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/TrafficSelectors",
+    "definitions": {
+        "TrafficSelectors": {
+            "required": [
+                "ts"
+            ],
+            "properties": {
+                "ts": {
+                    "items": {
+                        "$ref": "#/definitions/opi_api.security.v1.TrafficSelectors.TrafficSelector"
+                    },
+                    "type": "array"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selectors"
+        },
+        "opi_api.security.v1.TrafficSelectors.TrafficSelector": {
+            "required": [
+                "cidr",
+                "proto",
+                "port"
+            ],
+            "properties": {
+                "cidr": {
+                    "type": "string"
+                },
+                "proto": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Traffic Selector"
+        }
+    }
+}
