@@ -108,7 +108,8 @@ class IPsecServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def IPsecListConns(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """list connections
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

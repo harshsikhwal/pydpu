@@ -5,9 +5,7 @@
 import grpc
 from ..baseAPI import Base
 
-from ..proto.v1 import inventory_pb2
-from ..proto.v1 import inventory_pb2_grpc
-
+from ..proto_imports.inventory import *
 
 class InventoryAPI(Base):
     def __init__(self, parent):

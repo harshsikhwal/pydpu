@@ -9,8 +9,7 @@ import uuid
 import grpc
 from google.protobuf import field_mask_pb2, wrappers_pb2
 
-from ..proto.v1 import frontend_nvme_pb2, frontend_nvme_pb2_grpc, opicommon_pb2, uuid_pb2
-
+from ..proto_imports.storage import *
 
 class NvmeSubsystem:
     """An object representing Nvme subsystem.

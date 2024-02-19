@@ -152,6 +152,35 @@ def copy_generated_stubs():
         logging.info("File %s copied successfully.", proto_obj.grpc_source_full_path)
 
 
+def generate_proto_imports():
+
+    proto_import_folder = "../pydpu/proto_imports"
+
+    proto_folder = "../pydpu/proto"
+    execute_command("mkdir -p " + proto_folder)
+
+    logging.info("generating imports in %s", proto_import_folder)
+
+    level_one_apis = [entry for entry in os.listdir(proto_folder) if os.path.isdir(os.path.join(proto_folder, entry))]
+
+    # generate the python file with these names
+    
+    proto_import_template = """from ..proto.{root_api} import {python_file_name}\n"""
+    for api in level_one_apis:
+        # scan recursively        
+        generated_proto_files = []
+        for dirpath, _, filenames in os.walk(os.path.join(proto_folder, api)):
+                for filename in filenames:
+                    if filename.endswith(".py"):
+                        generated_proto_files.append(filename.replace(".py", ""))
+        # dump to file 
+        generated_proto_template = ""
+        for proto_file in generated_proto_files:
+            generated_proto_template = generated_proto_template + proto_import_template.format(root_api=api, python_file_name=proto_file)
+        
+        with open(os.path.join(proto_import_folder, api + ".py"), 'w') as python_file:
+            python_file.write(generated_proto_template)
+
 if __name__ == "__main__":
 
     with open("config.json", "r") as config_file:
@@ -178,13 +207,18 @@ if __name__ == "__main__":
     # copy the stubs
     copy_generated_stubs()
 
-    # generate the protoc jsons:
+    # generate the proto_imports
 
-    for proto_obj in source_proto_map.values():
-        logging.info("Generating JSON messages for : %s", proto_obj.proto_filename)
-        command = "protoc --jsonschema_out=" + proto_obj.generated_json_proto_dir + " --jsonschema_opt=all_fields_required --proto_path=" + proto_obj.source_proto_dir_path + " " + proto_obj.proto_source_full_path
+    generate_proto_imports()
 
-        logging.info("Executing command : %s", command)
-        execute_command(command)
+    # TODO: implement below code
+    # # generate the protoc jsons:
+
+    # for proto_obj in source_proto_map.values():
+    #     logging.info("Generating JSON messages for : %s", proto_obj.proto_filename)
+    #     command = "protoc --jsonschema_out=" + proto_obj.generated_json_proto_dir + " --jsonschema_opt=all_fields_required --proto_path=" + proto_obj.source_proto_dir_path + " " + proto_obj.proto_source_full_path
+
+    #     logging.info("Executing command : %s", command)
+    #     execute_command(command)
 
 

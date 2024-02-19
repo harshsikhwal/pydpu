@@ -5,60 +5,7 @@
 import grpc
 from ..baseAPI import Base
 
-# cloud api import here:
-
-from ..proto.v1 import bgp_pb2
-from ..proto.v1 import bgp_pb2_grpc
-
-from ..proto.v1 import cloudrpc_pb2
-from ..proto.v1 import cloudrpc_pb2_grpc
-
-from ..proto.v1 import device_pb2
-from ..proto.v1 import device_pb2_grpc
-
-from ..proto.v1 import interface_pb2
-from ..proto.v1 import interface_pb2_grpc
-
-from ..proto.v1 import mapping_pb2
-from ..proto.v1 import mapping_pb2_grpc
-
-from ..proto.v1 import networkpolicy_pb2
-from ..proto.v1 import networkpolicy_pb2_grpc
-
-from ..proto.v1 import nexthop_pb2
-from ..proto.v1 import nexthop_pb2_grpc
-
-from ..proto.v1 import port_pb2
-from ..proto.v1 import port_pb2_grpc
-
-from ..proto.v1 import route_pb2
-from ..proto.v1 import route_pb2_grpc
-
-from ..proto.v1 import subnet_pb2
-from ..proto.v1 import subnet_pb2_grpc
-
-from ..proto.v1 import tunnel_pb2
-from ..proto.v1 import tunnel_pb2_grpc
-
-from ..proto.v1 import underlayroute_pb2
-from ..proto.v1 import underlayroute_pb2_grpc
-
-from ..proto.v1 import vnic_pb2
-from ..proto.v1 import vnic_pb2_grpc
-
-from ..proto.v1 import vpc_pb2
-from ..proto.v1 import vpc_pb2_grpc
-
-# evpn_gw api import here
-
-from ..proto.v1 import l2_xpu_infra_mgr_pb2
-from ..proto.v1 import l2_xpu_infra_mgr_pb2_grpc
-from ..proto.v1 import l3_xpu_infra_mgr_pb2
-from ..proto.v1 import l3_xpu_infra_mgr_pb2_grpc
-
-
-# k8s api import here:
-
+from ..proto_imports.network import *
 
 class BgpAPI(Base):
     """

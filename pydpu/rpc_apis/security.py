@@ -5,8 +5,7 @@
 import grpc
 from ..baseAPI import Base
 
-from ..proto.v1 import ipsec_pb2_grpc
-from ..proto.v1 import ipsec_pb2
+from ..proto_imports.security import *
 
 
 class IPSecAPI(Base):

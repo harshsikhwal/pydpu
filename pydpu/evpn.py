@@ -3,12 +3,12 @@
 
 import grpc
 
-from .proto.v1 import (
-    l2_xpu_infra_mgr_pb2,
-    l2_xpu_infra_mgr_pb2_grpc,
-    l3_xpu_infra_mgr_pb2,
-    l3_xpu_infra_mgr_pb2_grpc,
-)
+from .proto_imports import *
+from .proto_imports.network import l2_xpu_infra_mgr_pb2
+from .proto_imports.network import l2_xpu_infra_mgr_pb2_grpc
+
+from .proto_imports.network import l3_xpu_infra_mgr_pb2
+from .proto_imports.network import l3_xpu_infra_mgr_pb2_grpc
 
 
 def bridge_create(address):

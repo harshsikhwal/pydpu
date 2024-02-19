@@ -3,11 +3,11 @@
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
 from connection import Connection
-from rpc_apis.v1.common import CommonAPI
-from rpc_apis.v1.inventory import InventoryAPI
-from rpc_apis.v1.network import NetworkAPI
-from rpc_apis.v1.security import SecurityAPI
-from rpc_apis.v1.storage import StorageAPI
+# from rpc_apis.common import CommonAPI
+from rpc_apis.inventory import InventoryAPI
+from rpc_apis.network import NetworkAPI
+from rpc_apis.security import SecurityAPI
+from rpc_apis.storage import StorageAPI
 from baseAPI import Base
 
 
@@ -26,15 +26,15 @@ class Dpu(Base):
         connection = Connection(ip, port)
         self._insecure_channel = connection.insecure_channel()
 
-    @property
-    def common(self):
-        """
-        Create the Common API instance
-        :return: common obj
-        """
-        if self._common_api_ is None:
-            self._common_api_ = CommonAPI(self)
-        return self._common_api_
+    # @property
+    # def common(self):
+    #     """
+    #     Create the Common API instance
+    #     :return: common obj
+    #     """
+    #     if self._common_api_ is None:
+    #         self._common_api_ = CommonAPI(self)
+    #     return self._common_api_
 
     @property
     def inventory(self):
