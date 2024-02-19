@@ -3,14 +3,14 @@
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
 import grpc
-from ..baseAPI import Base
+from ..base import Base
 
 from ..proto_imports.security import *
 
 class IPSecAPI(Base):
     def __init__(self, parent):
         super(IPSecAPI, self).__init__(parent)
-        self.stub = ipsec_pb2_grpc.IPsecStub(self.grpc_insecure_channel)
+        self.stub = ipsec_pb2_grpc.IPsecStub(self.channel)
 
     @property
     def ipsec_message(self):

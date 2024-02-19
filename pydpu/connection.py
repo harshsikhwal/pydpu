@@ -1,35 +1,33 @@
-import requests
-import json
-import grpc
-import grpc_tools
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
+import grpc
 
 class Connection(object):
     """
     This is the base class which maintains all the gRPC connection info
-    """
-    def __init__(self, ip, port, ca=None, ca_key=None, rca=None):
+    """ 
+    __slots__ = (
+        "_channel",
+    )
+    
+    def __init__(self, ip, port):
         self._ip_ = ip
         self._port_ = port
-        self._client_certificate_ = ca
-        self._client_certificate_key_ = ca_key
-        self._root_certificate_ = rca
+        self._channel = None
 
     @property
     def host(self) -> str:
         return self._ip_ + self._port_
 
     def insecure_channel(self):
-        return grpc.insecure_channel(self.host)
+        self._channel = grpc.insecure_channel(self.host)
 
-    def secure_channel(self):
-        raise NotImplementedError("This method is not implemented yet")
-
-        """
+    def secure_channel(self, root_certificates, client_certificate, client_certificate_key):
         credentials = grpc.ssl_channel_credentials(
-            root_certificates=self._root_certificate,
-            certificate_chain=self._client_certificate,
-            private_key=self._client_certificate_key,
+            root_certificates=root_certificates,
+            certificate_chain=client_certificate,
+            private_key=client_certificate_key,
         )
         CHANNEL_OPTIONS = [
             ("grpc.enable_retries", 0),
@@ -44,4 +42,4 @@ class Connection(object):
         except:
             print(f"Timeout. Failed to establish secure channel to {self._ip}")
         return channel
-        """
+        

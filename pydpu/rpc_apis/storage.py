@@ -2,7 +2,7 @@
 # Copyright (c) 2022 Dell Inc, or its subsidiaries.
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
-from ..baseAPI import Base
+from ..base import Base
 
 import uuid
 

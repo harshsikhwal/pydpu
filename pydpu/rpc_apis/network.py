@@ -3,7 +3,7 @@
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
 
 import grpc
-from ..baseAPI import Base
+from ..base import Base
 
 from ..proto_imports.network import *
 
@@ -31,7 +31,7 @@ class CloudRpcAPI(Base):
 
     def __init__(self, parent):
         super(CloudRpcAPI, self).__init__(parent)
-        self.stub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.grpc_insecure_channel)
+        self.stub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.channel)
         pass
 
     @property
@@ -73,7 +73,7 @@ class CloudAPI(Base):
 class L2XpuInfraAPI(Base):
     def __init__(self, parent):
         super(L2XpuInfraAPI, self).__init__(parent)
-        self.stub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.grpc_insecure_channel)
+        self.stub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.channel)
 
     @property
     def l2xpu_infra_message(self):
@@ -100,7 +100,7 @@ class L2XpuInfraAPI(Base):
 class L3XpuInfraAPI(Base):
     def __init__(self, parent):
         super(L3XpuInfraAPI, self).__init__(parent)
-        self.stub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.grpc_insecure_channel)
+        self.stub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.channel)
 
     @property
     def l3xpu_infra_message(self):
