@@ -24,17 +24,78 @@ destination_gen_stub_map = {}
 PB2 = "_pb2.py"
 GRPC = "_pb2_grpc.py"
 
+rpc_import_template = """
+import grpc
+from ..base import Base
+from ..proto_imports.{parent_api} import *
+from google.protobuf import json_format
+"""
+
+# Leaf API is proto_filename but in camel case
+leaf_api_class_template = """
+class {leaf_api}API(Base):
+    def __init__(self, parent):
+        super({leaf_api}API, self).__init__(parent)
+"""
+
+leaf_api_stub_template = """self.{service_name}Stub = {proto_filename}_pb2_grpc.{service_name}Stub(self.channel)"""
+
+leaf_api_property_message_template = """
+    @property
+    def {proto_filename}_message(self):
+        return {proto_filename}_message
+"""
+
+leaf_api_def_template = """
+    def {rpc_wrapper_name}(self, request):
+        try:
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, {proto_filename}_pb2.{rpc_request})
+            res_obj = self.{service_name}stub.{rpc_name}(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.{proto_filename}_message.{rpc_response}().deserialize(response)
+        except grpc.RpcError as e:
+            print(e)
+"""
+
+parent_class_template = """
+class {parent_class_name}API(Base):
+    def __init__(self, parent):
+        super({parent_class_name}API, self).__init__(parent)
+"""
+
+parent_class_leaf_property_template = """
+    @property
+    def {proto_filename}(self) -> {leaf_api}API:
+
+        if self._{proto_filename}_api_ is None:
+            self._{proto_filename}_ = {leaf_api}API(self)
+        return self._{proto_filename}_
+"""
+
+parent_class_child_property_template = """
+    @property
+    def {child_class}(self) -> {child_class}API:
+
+        if self._{child_class}_api_ is None:
+            self._{child_class}_ = {child_class}API(self)
+        return self._{child_class}_
+"""
+
+
 class ProtoStorage:
     def __init__(self):
-        proto_filename = ""
-        pb2_filename = ""
-        grpc_filename = ""
-        source_proto_dir_path = ""
-        source_stub_dir_path = ""
-        source_relative_path = ""
+        self.proto_filename = ""
+        self.pb2_filename = ""
+        self.grpc_filename = ""
+        self.source_proto_dir_path = ""
+        self.source_stub_dir_path = ""
+        self.source_relative_path = ""
 
     def pprint(self):
         print(self.__dict__)
+        print(self.proto_hierarchy_list)
 
     @property
     def proto_source_full_path(self):
@@ -63,7 +124,13 @@ class ProtoStorage:
     @property
     def generated_json_proto_dir(self):
         return os.path.join(dest_proto_dir, self.source_relative_path, self.proto_filename.replace(".proto", ""))
-
+    
+    @property
+    def proto_hierarchy_list(self):
+        hierarchy = self.source_relative_path.split("/")
+        filtered_hierarchy = [item for item in hierarchy if item != ""]
+        return filtered_hierarchy
+        
 def create_folders(root_path, folders):
     full_path = os.path.join(root_path, folders)
     os.makedirs(full_path, exist_ok=True)
@@ -71,6 +138,7 @@ def create_folders(root_path, folders):
 
 def gather_proto_files(root_dir):
 
+    source_proto_map = {}
     logging.info("Gathering all proto files from: %s", root_dir)
 
     def gather_skln_stub(root_dir, proto_storage):
@@ -104,6 +172,8 @@ def gather_proto_files(root_dir):
 
                 source_proto_map[os.path.abspath(os.path.join(dirpath, filename))] = proto_storage
 
+    return source_proto_map
+
 def get_common_prefix(paths):
     prefix = os.path.commonprefix(paths)
     idx = prefix.rfind(os.path.sep)
@@ -134,7 +204,7 @@ def create_directories(proto_obj):
     logging.info("Creating directory: %s", proto_obj.generated_json_proto_dir)
     execute_command("mkdir -p " + proto_obj.generated_json_proto_dir)
 
-def copy_generated_stubs():
+def copy_generated_stubs(source_proto_map):
 
     logging.info("copying stubs from source to destination")
     for proto_obj in source_proto_map.values():
@@ -150,6 +220,138 @@ def copy_generated_stubs():
         logging.info("copying %s to %s", proto_obj.grpc_source_full_path, proto_obj.grpc_dest_full_path)
         shutil.copy2(proto_obj.grpc_source_full_path, proto_obj.grpc_dest_full_path)
         logging.info("File %s copied successfully.", proto_obj.grpc_source_full_path)
+
+
+def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
+    """
+    Return the rpc generated classes
+    """
+
+    parent_class = ""
+    leaf_classes = ""
+    print("\"\"\"" + proto_storage_obj.proto_source_full_path + "\"\"\"" )
+    # Open the file for reading
+    with open(proto_storage_obj.proto_source_full_path, "r") as file:
+        # Read the entire content of the file
+        file_content = file.read()
+        
+        # Split the content into tokens
+        tokens = file_content.split()
+        
+        leaf_class_functions = ""
+        leaf_stubs = ""
+        service_name = ""
+
+        for index in range(len(tokens)):
+            
+            if tokens[index] == "service" and tokens[index + 2] == "{":
+
+                # this will be the stub name
+                service_name = tokens[index + 1]
+                
+                stack = []
+                
+                if tokens[index + 2] == "{":
+                    stack.append("{")
+
+                # iterate till we get '}'
+                index = index + 3
+                while index < len(tokens):
+
+                    # initialize to empty
+                    rpc_wrapper_name = ""
+                    rpc_request = ""
+                    rpc_name = ""
+                    rpc_response = ""                    
+                    if len(stack) == 0:
+                        break
+                    
+                    if "{" in tokens[index] or "}" in tokens[index]:
+                        # iterate the token
+                        for token in tokens[index]:
+                            if token == "{":
+                                stack.append("{")
+                            elif token == "}":
+                                stack.pop()
+
+                    elif tokens[index] == "wrapper_name":
+                        rpc_wrapper_name = tokens[index + 1]
+
+                    elif tokens[index] == "rpc":
+                        rpc_name = tokens[index + 1]
+                        if "(" in rpc_name and ")" in rpc_name:
+                            mix_string = rpc_name.split("(")
+                            rpc_name = mix_string[0]
+                            rpc_request = mix_string[1].replace(")", "")
+                        if rpc_request == "":
+                            rpc_request = tokens[index + 2].replace("(", "").replace(")", "")
+                            if tokens[index + 3] == "returns":
+                                rpc_response = tokens[index + 4].replace("(", "").replace(")", "")
+                                if "{" in rpc_response:
+                                    stack.append("{")
+                                    rpc_response = rpc_response.replace("{", "")
+                                index = index + 1
+                            index = index + 2
+                        else:
+                            if tokens[index + 2] == "returns":
+                                rpc_response = tokens[index + 3].replace("(", "").replace(")", "")
+                                if "{" in rpc_response:
+                                    stack.append("{")
+                                    rpc_response = rpc_response.replace("{", "")
+
+                        print("\"\"\""  + rpc_name, " " , rpc_request, " ", rpc_response + "\"\"\"" )
+                         # validation:
+                        if rpc_wrapper_name == "":
+                            rpc_wrapper_name = rpc_name
+
+                        leaf_class_functions = leaf_class_functions + leaf_api_def_template.format(rpc_wrapper_name=rpc_wrapper_name, proto_filename=proto_storage_obj.proto_filename.replace(".proto", ""), rpc_request=rpc_request, service_name=service_name, rpc_name=rpc_name, rpc_response=rpc_response) 
+                
+
+                    index = index + 1
+            
+                   
+                # generate the template
+                leaf_stubs = leaf_stubs + "        " + leaf_api_stub_template.format(service_name=service_name, proto_filename=proto_storage_obj.proto_filename.replace(".proto", "")) + "\n"
+
+        # so leaf api is nothing but proto_file_name in camel case
+        # TODO: better logic for camel case
+        leaf_classes = leaf_api_class_template.format(leaf_api=proto_storage_obj.proto_filename.replace(".proto", ""))
+
+        leaf_classes = leaf_classes + leaf_stubs + leaf_class_functions
+        # print(leaf_classes)
+    
+    if proto_storage_obj.source_relative_path not in parent_class_storage_map:
+        parent_class_storage_map[proto_storage_obj.source_relative_path] = [leaf_classes]
+    else:
+        parent_class_storage_map[proto_storage_obj.source_relative_path].append(leaf_classes)
+
+
+class Node:
+    def __init__(self, name):
+        self.name = name
+        self.children = {}
+        self.classes = []
+
+def generate_hierarchy(parent_class_storage_map):
+    root = Node('root')
+
+    for key, classes in parent_class_storage_map.items():
+        current = root
+        directories = key.split('/')
+        for directory in directories:
+            if directory not in current.children:
+                current.children[directory] = Node(directory)
+            current = current.children[directory]
+        current.classes = classes
+
+    return root
+
+def print_classes(node, indent=0):
+    print('  ' * indent + node.name)
+    for class_name in node.classes:
+        print('  ' * (indent + 1) + class_name)
+    for child in node.children.values():
+        print_classes(child, indent + 1)
 
 
 def generate_proto_imports():
@@ -191,7 +393,7 @@ if __name__ == "__main__":
     # TODO: Add config validation 
 
     # get all the proto files from opi_api_dir
-    gather_proto_files(config_data["opi_api_dir"])
+    source_proto_map = gather_proto_files(config_data["opi_api_dir"])
 
     source_proto_file_list = list(source_proto_map.keys())
 
@@ -205,7 +407,7 @@ if __name__ == "__main__":
         logging.info("relative path for %s : %s", source_full_path, relative_path)
 
     # copy the stubs
-    copy_generated_stubs()
+    copy_generated_stubs(source_proto_map)
 
     # generate the proto_imports
 
@@ -221,4 +423,31 @@ if __name__ == "__main__":
     #     logging.info("Executing command : %s", command)
     #     execute_command(command)
 
+    parent_class_storage_map = {}
+    for values in source_proto_map.values():
+        generate_rpc_class_from_proto(parent_class_storage_map, values)
 
+    print(parent_class_storage_map)
+    # parent_classes = ""
+    # # generate the parent class
+
+    # hierarchy_list = proto_storage_obj.proto_hierarchy_list
+    # print(proto_storage_obj.proto_hierarchy_list)
+    # child_template = ""
+    # for index in range(len(hierarchy_list)-1, -1, -1):
+    #     if index == len(hierarchy_list) - 1:
+    #         child_template = parent_class_leaf_property_template.format(proto_filename = proto_storage_obj.proto_filename.replace(".proto", ""), leaf_api=proto_storage_obj.proto_filename.replace(".proto", ""))
+    #     else:
+    #         child_template = parent_class_child_property_template.format(child_class=hierarchy_list[index + 1].replace("-","_"))
+    #     # TODO: better function to replace any different characters for class name
+    #     parent_classes = parent_classes + parent_class_template.format(parent_class_name=hierarchy_list[index].replace("-","_")) + child_template
+
+    # parent_classes =leaf_classes +  parent_classes 
+
+    # print(proto_storage_obj.proto_hierarchy_list)
+    # print(parent_classes)
+    # return parent_classes
+
+    root_parent = generate_hierarchy(parent_class_storage_map)
+
+    print_classes(root_parent)

@@ -8,7 +8,8 @@ logger = logging.getLogger(__name__)
 folder_name = "ipsec"
 
 autogen_message = """# AUTO-GENERATED CODE - DO NOT MODIFY
-# Modifications may be overwritten during future updates"""
+# Modifications may be overwritten during future updates
+# Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries."""
 
 import_template = """
 from typing import List
@@ -30,9 +31,9 @@ property_template = """
         self.{field_name} = value
 """
 
-class_template = """
-class {class_name}:
-{class_description}
+message_class_template = """
+class {message_class_name}:
+{message_class_description}
     def __init__(self, {constructor_parameters}):
 {class_fields}
 {class_properties}
@@ -78,7 +79,7 @@ dependency_graph = DependencyGraph()
 
 def json_reader(json_data):
     """Reads the json_data and creates classes from templates"""
-    class_name =""
+    message_class_name =""
     logger.info("Reading definitions.")
     # get the definition
     definitions = json_data["definitions"]
@@ -87,7 +88,7 @@ def json_reader(json_data):
     for definition in definitions:
         generated_class_fields = ""
         constructor_parameters = ""
-        class_description = ""
+        message_class_description = ""
         generated_class_properties = ""
         logger.info("Definition name: %s", definition)
         """ 
@@ -109,18 +110,18 @@ def json_reader(json_data):
 
         # get the class name 
         if '.' in definition:
-            class_name = definition.split(".")[-1].strip()
+            message_class_name = definition.split(".")[-1].strip()
         else:
-            class_name = definition
+            message_class_name = definition
 
-        dependency_graph.add_dependency(class_name, "")
+        dependency_graph.add_dependency(message_class_name, "")
 
-        logger.info("Setting class name as %s", class_name)
+        logger.info("Setting class name as %s", message_class_name)
 
         if "description" in definitions[definition]:
             # get the class description
-            class_description = definitions[definition]["description"]
-            logger.info("Class Description: %s", class_description)
+            message_class_description = definitions[definition]["description"]
+            logger.info("Class Description: %s", message_class_description)
 
         # get the class properties i.e. fields
             
@@ -150,7 +151,7 @@ def json_reader(json_data):
                                 Case: Enum
 
                                 "definitions": {
-                                    "Proposals": {                              <- class_name that uses enum
+                                    "Proposals": {                              <- message_class_name that uses enum
                                         "required": [
                                             "crypto_alg"                      
                                         ],
@@ -200,7 +201,7 @@ def json_reader(json_data):
                                 add this to dependency graph 
                                 TODO: may need a better logic?
                                 """
-                                dependency_graph.add_dependency(class_name, array_primitive_type)
+                                dependency_graph.add_dependency(message_class_name, array_primitive_type)
                                 logger.info("class field type is %s array.", array_primitive_type)
 
                             elif "type" in class_field_info["items"]:
@@ -259,7 +260,7 @@ def json_reader(json_data):
                     add this to dependency graph 
                     TODO: may need a better logic?
                     """
-                    dependency_graph.add_dependency(class_name, property_type)
+                    dependency_graph.add_dependency(message_class_name, property_type)
                     logger.info("class field type is %s", property_type)
                 
 
@@ -274,17 +275,17 @@ def json_reader(json_data):
             generated_class_fields = "        pass" 
         logger.info("generated class fields: %s", generated_class_fields)
 
-        if class_description != "":
-            class_description = "    " + "\"\"\" " + class_description + " \"\"\""
+        if message_class_description != "":
+            message_class_description = "    " + "\"\"\" " + message_class_description + " \"\"\""
 
         # remove the last comma
             
         constructor_parameters = constructor_parameters[0:len(constructor_parameters) - 2]
 
         logger.info("adding constructor parameters: %s", constructor_parameters)
-        generated_class_map[class_name] = class_template.format(class_name=class_name, class_description=class_description, constructor_parameters=constructor_parameters, class_fields=generated_class_fields, class_properties=generated_class_properties)
+        generated_class_map[message_class_name] = message_class_template.format(message_class_name=message_class_name, message_class_description=message_class_description, constructor_parameters=constructor_parameters, class_fields=generated_class_fields, class_properties=generated_class_properties)
 
-        logger.info("generated class: %s", generated_class_map[class_name])
+        logger.info("generated class: %s", generated_class_map[message_class_name])
  
 
 logger.info("Reading files in folder: %s", folder_name)
