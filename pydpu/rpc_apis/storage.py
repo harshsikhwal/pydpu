@@ -953,3 +953,69 @@ class BackendAioAPI(Base):
 class StorageAPI(Base):
     def __init__(self, parent):
         super(StorageAPI, self).__init__(parent)
+
+    @property
+    def FrontendVirtioFs(self) -> FrontendVirtioFsAPI:
+        if self._FrontendVirtioFs_api_ is None:
+            self._FrontendVirtioFs_ = FrontendVirtioFsAPI(self)
+        return self._FrontendVirtioFs_
+
+    @property
+    def MiddleendQosVolume(self) -> MiddleendQosVolumeAPI:
+        if self._MiddleendQosVolume_api_ is None:
+            self._MiddleendQosVolume_ = MiddleendQosVolumeAPI(self)
+        return self._MiddleendQosVolume_
+
+    @property
+    def BackendNvme(self) -> BackendNvmeAPI:
+        if self._BackendNvme_api_ is None:
+            self._BackendNvme_ = BackendNvmeAPI(self)
+        return self._BackendNvme_
+
+    @property
+    def FrontendVirtioScsi(self) -> FrontendVirtioScsiAPI:
+        if self._FrontendVirtioScsi_api_ is None:
+            self._FrontendVirtioScsi_ = FrontendVirtioScsiAPI(self)
+        return self._FrontendVirtioScsi_
+
+    @property
+    def FrontendNvme(self) -> FrontendNvmeAPI:
+        if self._FrontendNvme_api_ is None:
+            self._FrontendNvme_ = FrontendNvmeAPI(self)
+        return self._FrontendNvme_
+
+    @property
+    def FrontendVirtioBlk(self) -> FrontendVirtioBlkAPI:
+        if self._FrontendVirtioBlk_api_ is None:
+            self._FrontendVirtioBlk_ = FrontendVirtioBlkAPI(self)
+        return self._FrontendVirtioBlk_
+
+    @property
+    def Opicommon(self) -> OpicommonAPI:
+        if self._Opicommon_api_ is None:
+            self._Opicommon_ = OpicommonAPI(self)
+        return self._Opicommon_
+
+    @property
+    def MiddleendEncryption(self) -> MiddleendEncryptionAPI:
+        if self._MiddleendEncryption_api_ is None:
+            self._MiddleendEncryption_ = MiddleendEncryptionAPI(self)
+        return self._MiddleendEncryption_
+
+    @property
+    def BackendNull(self) -> BackendNullAPI:
+        if self._BackendNull_api_ is None:
+            self._BackendNull_ = BackendNullAPI(self)
+        return self._BackendNull_
+
+    @property
+    def BackendIscsi(self) -> BackendIscsiAPI:
+        if self._BackendIscsi_api_ is None:
+            self._BackendIscsi_ = BackendIscsiAPI(self)
+        return self._BackendIscsi_
+
+    @property
+    def BackendAio(self) -> BackendAioAPI:
+        if self._BackendAio_api_ is None:
+            self._BackendAio_ = BackendAioAPI(self)
+        return self._BackendAio_

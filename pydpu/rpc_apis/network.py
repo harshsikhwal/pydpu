@@ -53,6 +53,18 @@ class OpinetcommonAPI(Base):
     def __init__(self, parent):
         super(OpinetcommonAPI, self).__init__(parent)
 
+    @property
+    def OpenconfigInterfaces(self) -> OpenconfigInterfacesAPI:
+        if self._OpenconfigInterfaces_api_ is None:
+            self._OpenconfigInterfaces_ = OpenconfigInterfacesAPI(self)
+        return self._OpenconfigInterfaces_
+
+    @property
+    def Networktypes(self) -> NetworktypesAPI:
+        if self._Networktypes_api_ is None:
+            self._Networktypes_ = NetworktypesAPI(self)
+        return self._Networktypes_
+
 class RouteAPI(Base):
     def __init__(self, parent):
         super(RouteAPI, self).__init__(parent)
@@ -1324,6 +1336,90 @@ class CloudAPI(Base):
     def __init__(self, parent):
         super(CloudAPI, self).__init__(parent)
 
+    @property
+    def Route(self) -> RouteAPI:
+        if self._Route_api_ is None:
+            self._Route_ = RouteAPI(self)
+        return self._Route_
+
+    @property
+    def Underlayroute(self) -> UnderlayrouteAPI:
+        if self._Underlayroute_api_ is None:
+            self._Underlayroute_ = UnderlayrouteAPI(self)
+        return self._Underlayroute_
+
+    @property
+    def Mapping(self) -> MappingAPI:
+        if self._Mapping_api_ is None:
+            self._Mapping_ = MappingAPI(self)
+        return self._Mapping_
+
+    @property
+    def Vnic(self) -> VnicAPI:
+        if self._Vnic_api_ is None:
+            self._Vnic_ = VnicAPI(self)
+        return self._Vnic_
+
+    @property
+    def Tunnel(self) -> TunnelAPI:
+        if self._Tunnel_api_ is None:
+            self._Tunnel_ = TunnelAPI(self)
+        return self._Tunnel_
+
+    @property
+    def Bgp(self) -> BgpAPI:
+        if self._Bgp_api_ is None:
+            self._Bgp_ = BgpAPI(self)
+        return self._Bgp_
+
+    @property
+    def Vpc(self) -> VpcAPI:
+        if self._Vpc_api_ is None:
+            self._Vpc_ = VpcAPI(self)
+        return self._Vpc_
+
+    @property
+    def Device(self) -> DeviceAPI:
+        if self._Device_api_ is None:
+            self._Device_ = DeviceAPI(self)
+        return self._Device_
+
+    @property
+    def Cloudrpc(self) -> CloudrpcAPI:
+        if self._Cloudrpc_api_ is None:
+            self._Cloudrpc_ = CloudrpcAPI(self)
+        return self._Cloudrpc_
+
+    @property
+    def Nexthop(self) -> NexthopAPI:
+        if self._Nexthop_api_ is None:
+            self._Nexthop_ = NexthopAPI(self)
+        return self._Nexthop_
+
+    @property
+    def Interface(self) -> InterfaceAPI:
+        if self._Interface_api_ is None:
+            self._Interface_ = InterfaceAPI(self)
+        return self._Interface_
+
+    @property
+    def Subnet(self) -> SubnetAPI:
+        if self._Subnet_api_ is None:
+            self._Subnet_ = SubnetAPI(self)
+        return self._Subnet_
+
+    @property
+    def Port(self) -> PortAPI:
+        if self._Port_api_ is None:
+            self._Port_ = PortAPI(self)
+        return self._Port_
+
+    @property
+    def Networkpolicy(self) -> NetworkpolicyAPI:
+        if self._Networkpolicy_api_ is None:
+            self._Networkpolicy_ = NetworkpolicyAPI(self)
+        return self._Networkpolicy_
+
 class L3XpuInfraMgrAPI(Base):
     def __init__(self, parent):
         super(L3XpuInfraMgrAPI, self).__init__(parent)
@@ -1670,13 +1766,45 @@ class EvpnGwAPI(Base):
     def __init__(self, parent):
         super(EvpnGwAPI, self).__init__(parent)
 
+    @property
+    def L3XpuInfraMgr(self) -> L3XpuInfraMgrAPI:
+        if self._L3XpuInfraMgr_api_ is None:
+            self._L3XpuInfraMgr_ = L3XpuInfraMgrAPI(self)
+        return self._L3XpuInfraMgr_
+
+    @property
+    def L2XpuInfraMgr(self) -> L2XpuInfraMgrAPI:
+        if self._L2XpuInfraMgr_api_ is None:
+            self._L2XpuInfraMgr_ = L2XpuInfraMgrAPI(self)
+        return self._L2XpuInfraMgr_
+
 class TelcoAPI(Base):
     def __init__(self, parent):
         super(TelcoAPI, self).__init__(parent)
 
+class TelcoAPI(Base):
+    def __init__(self, parent):
+        super(TelcoAPI, self).__init__(parent)
+
+    @property
+    def Telco(self) -> TelcoAPI:
+        if self._Telco_api_ is None:
+            self._Telco_ = TelcoAPI(self)
+        return self._Telco_
+
 class K8sAPI(Base):
     def __init__(self, parent):
         super(K8sAPI, self).__init__(parent)
+
+class K8sAPI(Base):
+    def __init__(self, parent):
+        super(K8sAPI, self).__init__(parent)
+
+    @property
+    def K8s(self) -> K8sAPI:
+        if self._K8s_api_ is None:
+            self._K8s_ = K8sAPI(self)
+        return self._K8s_
 
 class NetworkAPI(Base):
     def __init__(self, parent):

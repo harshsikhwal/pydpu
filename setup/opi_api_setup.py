@@ -317,19 +317,22 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
         leaf_classes = leaf_api_class_template.format(leaf_api=to_camel_case(proto_storage_obj.proto_filename.replace(".proto", "")))
 
         leaf_classes = leaf_classes + leaf_stubs + leaf_class_functions
-        # print(leaf_classes)
+        print("leaf_classes = ", leaf_classes)
     
+    proto_filename_no_ext = to_camel_case(proto_storage_obj.proto_filename.replace(".proto", ""))
     if proto_storage_obj.source_relative_path not in parent_class_storage_map:
-        parent_class_storage_map[proto_storage_obj.source_relative_path] = [leaf_classes]
+        parent_class_storage_map[proto_storage_obj.source_relative_path] = {proto_filename_no_ext: leaf_classes}
     else:
-        parent_class_storage_map[proto_storage_obj.source_relative_path].append(leaf_classes)
-
-
+        if proto_filename_no_ext in parent_class_storage_map[proto_storage_obj.source_relative_path]:
+            parent_class_storage_map[proto_storage_obj.source_relative_path][proto_filename_no_ext].append(leaf_classes)
+        else:
+            parent_class_storage_map[proto_storage_obj.source_relative_path][proto_filename_no_ext] = leaf_classes
+             
 class RpcClassHierarchy:
     def __init__(self, class_name):
         self.class_name = class_name
         self.child_classes = {}
-        self.leaf_classes = []
+        self.leaf_class_map = {}
 
     @property
     def classname(self):       
@@ -344,7 +347,7 @@ def to_camel_case(name):
 
 def generate_hierarchy(parent_class_storage_map):
     root = RpcClassHierarchy('root')
-    for key, classes in parent_class_storage_map.items():
+    for key, internal_class_map in parent_class_storage_map.items():
         current = root
         directories = key.split('/')
         for directory in directories:
@@ -352,7 +355,7 @@ def generate_hierarchy(parent_class_storage_map):
                 if directory not in current.child_classes:
                     current.child_classes[directory] = RpcClassHierarchy(directory)
                 current = current.child_classes[directory]
-        current.leaf_classes = classes
+        current.leaf_class_map = internal_class_map.copy()
     return root
 
 # working with a directed tree
@@ -367,6 +370,7 @@ def generate_rpc_classes(root_node):
 
         parent_class = parent_class_template.format(parent_class_name = node.classname)
         child_property = ""
+        leaf_property = ""
         print("Child Classes: ")
         
         for child in node.child_classes.keys():
@@ -375,13 +379,18 @@ def generate_rpc_classes(root_node):
             child_property = child_property + parent_class_child_property_template.format(child_class=to_camel_case(child)) + "\n"
             stack.append(node.child_classes[child])
         
+        for leaf in node.leaf_class_map.keys():
+            leaf_property = leaf_property + parent_class_leaf_property_template.format(proto_filename=leaf)
+        
+        parent_class = parent_class + child_property + leaf_property
 
-        parent_class = parent_class + child_property
-
-        if parent_class not in node.leaf_classes:
-            generated_classes = ''.join(node.leaf_classes) + parent_class + generated_classes
-        else:
-            generated_classes = parent_class + generated_classes
+        generated_leaf_class = ""
+        for value in node.leaf_class_map.values():
+            if parent_class != node.leaf_class_map.values():
+                generated_leaf_class = generated_leaf_class + value
+            
+        generated_classes = generated_leaf_class + parent_class + generated_classes
+        
 
     return generated_classes
 
@@ -455,6 +464,8 @@ if __name__ == "__main__":
     #     logging.info("Executing command : %s", command)
     #     execute_command(command)
 
+    # dictionary containing relative source path as key and dict as its value where:
+    # internal_dict = proto_filename - camelcased as key and the generated class as its value
     parent_class_storage_map = {}
     for values in source_proto_map.values():
         generate_rpc_class_from_proto(parent_class_storage_map, values)

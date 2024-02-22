@@ -125,3 +125,9 @@ class IpsecAPI(Base):
 class SecurityAPI(Base):
     def __init__(self, parent):
         super(SecurityAPI, self).__init__(parent)
+
+    @property
+    def Ipsec(self) -> IpsecAPI:
+        if self._Ipsec_api_ is None:
+            self._Ipsec_ = IpsecAPI(self)
+        return self._Ipsec_
