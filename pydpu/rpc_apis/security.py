@@ -1,74 +1,127 @@
-# SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2022 Dell Inc, or its subsidiaries.
+# AUTO-GENERATED CODE - DO NOT MODIFY
+# Modifications may be overwritten during future updates
 # Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries.
-
 import grpc
 from ..base import Base
-
 from ..proto_imports.security import *
+from google.protobuf import json_format
+import json
 
-class IPSecAPI(Base):
+class IpsecAPI(Base):
     def __init__(self, parent):
-        super(IPSecAPI, self).__init__(parent)
-        self.stub = ipsec_pb2_grpc.IPsecStub(self.channel)
+        super(IpsecAPI, self).__init__(parent)
+        self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
-    @property
-    def ipsec_message(self):
-        """The ipsec protobuf stub
-        Returns
-        -------
-        - ipsec_pb2 object: The generated ipsec pb2 file
-        """
-        return ipsec_pb2
-
-    def get_ipsec_version(self, request):
+    def IPsecVersion(self, request):
         try:
-            return self.stub.IPsecVersion(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecVersionRequest)
+            res_obj = self.IPsecServicestub.IPsecVersion(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecVersionResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
-    def get_ipsec_stats(self, request):
+    def IPsecStats(self, request):
         try:
-            return self.stub.IPsecStats(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecStatsRequest)
+            res_obj = self.IPsecServicestub.IPsecStats(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecStatsResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_conns(self, request):
+    def IPsecInitiate(self, request):
         try:
-            return self.stub.IPsecListConns(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecInitiateRequest)
+            res_obj = self.IPsecServicestub.IPsecInitiate(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecInitiateResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_sas(self, request):
+    def IPsecTerminate(self, request):
         try:
-            return self.stub.IPsecListSas(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecTerminateRequest)
+            res_obj = self.IPsecServicestub.IPsecTerminate(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecTerminateResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
-    def list_ipsec_certs(self, request):
+    def IPsecRekey(self, request):
         try:
-            return self.stub.IPsecListCerts(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecRekeyRequest)
+            res_obj = self.IPsecServicestub.IPsecRekey(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecRekeyResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
-    def load_ipsec_connection(self, request):
+    def IPsecListSas(self, request):
         try:
-            return self.stub.IPsecLoadConn(request=request)
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListSasRequest)
+            res_obj = self.IPsecServicestub.IPsecListSas(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecListSasResponse().deserialize(response)
         except grpc.RpcError as e:
             print(e)
 
+    def IPsecListConns(self, request):
+        try:
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListConnsRequest)
+            res_obj = self.IPsecServicestub.IPsecListConns(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecListConnsResponse().deserialize(response)
+        except grpc.RpcError as e:
+            print(e)
+
+    def IPsecListCerts(self, request):
+        try:
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListCertsRequest)
+            res_obj = self.IPsecServicestub.IPsecListCerts(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecListCertsResponse().deserialize(response)
+        except grpc.RpcError as e:
+            print(e)
+
+    def IPsecLoadConn(self, request):
+        try:
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecLoadConnRequest)
+            res_obj = self.IPsecServicestub.IPsecLoadConn(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecLoadConnResponse().deserialize(response)
+        except grpc.RpcError as e:
+            print(e)
+
+    def IPsecUnloadConn(self, request):
+        try:
+            request = json.dumps(request)
+            req_obj = json_format.Parse(request, ipsec_pb2.IPsecUnloadConnRequest)
+            res_obj = self.IPsecServicestub.IPsecUnloadConn(request=req_obj)
+            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
+            if response is not None:
+                return self.ipsec_message.IPsecUnloadConnResponse().deserialize(response)
+        except grpc.RpcError as e:
+            print(e)
 
 class SecurityAPI(Base):
-
     def __init__(self, parent):
         super(SecurityAPI, self).__init__(parent)
-
-    @property
-    def ipsec(self) -> IPSecAPI:
-        """
-        Create the Inventory API instance.
-        :return: inventory api
-        """
-        if self._ipsec_api_ is None:
-            self._ipsec_api_ = IPSecAPI(self)
-        return self._ipsec_api_

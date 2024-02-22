@@ -24,11 +24,16 @@ destination_gen_stub_map = {}
 PB2 = "_pb2.py"
 GRPC = "_pb2_grpc.py"
 
+autogen_message = """# AUTO-GENERATED CODE - DO NOT MODIFY
+# Modifications may be overwritten during future updates
+# Copyright (c) 2024 Keysight Technologies Inc, or its subsidiaries."""
+
 rpc_import_template = """
 import grpc
 from ..base import Base
 from ..proto_imports.{parent_api} import *
 from google.protobuf import json_format
+import json
 """
 
 # Leaf API is proto_filename but in camel case
@@ -67,17 +72,15 @@ class {parent_class_name}API(Base):
 
 parent_class_leaf_property_template = """
     @property
-    def {proto_filename}(self) -> {leaf_api}API:
-
+    def {proto_filename}(self) -> {proto_filename}API:
         if self._{proto_filename}_api_ is None:
-            self._{proto_filename}_ = {leaf_api}API(self)
+            self._{proto_filename}_ = {proto_filename}API(self)
         return self._{proto_filename}_
 """
 
 parent_class_child_property_template = """
     @property
     def {child_class}(self) -> {child_class}API:
-
         if self._{child_class}_api_ is None:
             self._{child_class}_ = {child_class}API(self)
         return self._{child_class}_
@@ -208,7 +211,7 @@ def copy_generated_stubs(source_proto_map):
 
     logging.info("copying stubs from source to destination")
     for proto_obj in source_proto_map.values():
-        print(proto_obj.pprint())    
+        # print(proto_obj.pprint())    
 
         create_directories(proto_obj)
         # copy pb2 to destination
@@ -226,10 +229,8 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
     """
     Return the rpc generated classes
     """
-
-    parent_class = ""
     leaf_classes = ""
-    print("\"\"\"" + proto_storage_obj.proto_source_full_path + "\"\"\"" )
+    # print("\"\"\"" + proto_storage_obj.proto_source_full_path + "\"\"\"" )
     # Open the file for reading
     with open(proto_storage_obj.proto_source_full_path, "r") as file:
         # Read the entire content of the file
@@ -299,23 +300,21 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
                                     stack.append("{")
                                     rpc_response = rpc_response.replace("{", "")
 
-                        print("\"\"\""  + rpc_name, " " , rpc_request, " ", rpc_response + "\"\"\"" )
-                         # validation:
+                        # print("\"\"\""  + rpc_name, " " , rpc_request, " ", rpc_response + "\"\"\"" )
+                        # validation:
                         if rpc_wrapper_name == "":
                             rpc_wrapper_name = rpc_name
 
                         leaf_class_functions = leaf_class_functions + leaf_api_def_template.format(rpc_wrapper_name=rpc_wrapper_name, proto_filename=proto_storage_obj.proto_filename.replace(".proto", ""), rpc_request=rpc_request, service_name=service_name, rpc_name=rpc_name, rpc_response=rpc_response) 
                 
-
                     index = index + 1
             
-                   
                 # generate the template
                 leaf_stubs = leaf_stubs + "        " + leaf_api_stub_template.format(service_name=service_name, proto_filename=proto_storage_obj.proto_filename.replace(".proto", "")) + "\n"
 
         # so leaf api is nothing but proto_file_name in camel case
         # TODO: better logic for camel case
-        leaf_classes = leaf_api_class_template.format(leaf_api=proto_storage_obj.proto_filename.replace(".proto", ""))
+        leaf_classes = leaf_api_class_template.format(leaf_api=to_camel_case(proto_storage_obj.proto_filename.replace(".proto", "")))
 
         leaf_classes = leaf_classes + leaf_stubs + leaf_class_functions
         # print(leaf_classes)
@@ -326,32 +325,65 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
         parent_class_storage_map[proto_storage_obj.source_relative_path].append(leaf_classes)
 
 
-class Node:
-    def __init__(self, name):
-        self.name = name
-        self.children = {}
-        self.classes = []
+class RpcClassHierarchy:
+    def __init__(self, class_name):
+        self.class_name = class_name
+        self.child_classes = {}
+        self.leaf_classes = []
+
+    @property
+    def classname(self):       
+        return to_camel_case(self.class_name)
+
+def to_camel_case(name):
+    # return self.class_name but with _
+    words = name.replace('-', '_').split('_')
+    camel_case = [word.capitalize() for word in words]
+    return ''.join(camel_case)
+
 
 def generate_hierarchy(parent_class_storage_map):
-    root = Node('root')
-
+    root = RpcClassHierarchy('root')
     for key, classes in parent_class_storage_map.items():
         current = root
         directories = key.split('/')
         for directory in directories:
-            if directory not in current.children:
-                current.children[directory] = Node(directory)
-            current = current.children[directory]
-        current.classes = classes
-
+            if directory != "":
+                if directory not in current.child_classes:
+                    current.child_classes[directory] = RpcClassHierarchy(directory)
+                current = current.child_classes[directory]
+        current.leaf_classes = classes
     return root
 
-def print_classes(node, indent=0):
-    print('  ' * indent + node.name)
-    for class_name in node.classes:
-        print('  ' * (indent + 1) + class_name)
-    for child in node.children.values():
-        print_classes(child, indent + 1)
+# working with a directed tree
+def generate_rpc_classes(root_node):
+    stack = [root_node]
+    generated_classes = ""
+    while stack:
+        node = stack.pop()
+        # generate the parent class:
+
+        print("Generating the Parent Class: ", node.classname)
+
+        parent_class = parent_class_template.format(parent_class_name = node.classname)
+        child_property = ""
+        print("Child Classes: ")
+        
+        for child in node.child_classes.keys():
+            # generate the child classes here:
+            print("Child: ", child)
+            child_property = child_property + parent_class_child_property_template.format(child_class=to_camel_case(child)) + "\n"
+            stack.append(node.child_classes[child])
+        
+
+        parent_class = parent_class + child_property
+
+        if parent_class not in node.leaf_classes:
+            generated_classes = ''.join(node.leaf_classes) + parent_class + generated_classes
+        else:
+            generated_classes = parent_class + generated_classes
+
+    return generated_classes
 
 
 def generate_proto_imports():
@@ -427,7 +459,7 @@ if __name__ == "__main__":
     for values in source_proto_map.values():
         generate_rpc_class_from_proto(parent_class_storage_map, values)
 
-    print(parent_class_storage_map)
+    # print(parent_class_storage_map)
     # parent_classes = ""
     # # generate the parent class
 
@@ -448,6 +480,26 @@ if __name__ == "__main__":
     # print(parent_classes)
     # return parent_classes
 
-    root_parent = generate_hierarchy(parent_class_storage_map)
+    root_node = generate_hierarchy(parent_class_storage_map)
 
-    print_classes(root_parent)
+    # print_classes(root_node)
+
+    for classes in root_node.child_classes.keys():
+        print(classes)
+        print("values = ", root_node.child_classes[classes] )
+
+        generated_class = generate_rpc_classes(root_node.child_classes[classes])
+        
+        generated_class = autogen_message + rpc_import_template.format(parent_api=classes) + generated_class
+        # dump to folder
+
+        gen_rpc_dump_folder = "../pydpu/rpc_apis"
+
+        logging.info("generating imports in %s", gen_rpc_dump_folder)
+
+        # generate the python file with these names
+        
+            
+        with open(os.path.join(gen_rpc_dump_folder, classes + ".py"), 'w') as python_file:
+            python_file.write(generated_class)
+
