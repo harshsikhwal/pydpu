@@ -1782,29 +1782,9 @@ class TelcoAPI(Base):
     def __init__(self, parent):
         super(TelcoAPI, self).__init__(parent)
 
-class TelcoAPI(Base):
-    def __init__(self, parent):
-        super(TelcoAPI, self).__init__(parent)
-
-    @property
-    def Telco(self) -> TelcoAPI:
-        if self._Telco_api_ is None:
-            self._Telco_ = TelcoAPI(self)
-        return self._Telco_
-
 class K8sAPI(Base):
     def __init__(self, parent):
         super(K8sAPI, self).__init__(parent)
-
-class K8sAPI(Base):
-    def __init__(self, parent):
-        super(K8sAPI, self).__init__(parent)
-
-    @property
-    def K8s(self) -> K8sAPI:
-        if self._K8s_api_ is None:
-            self._K8s_ = K8sAPI(self)
-        return self._K8s_
 
 class NetworkAPI(Base):
     def __init__(self, parent):

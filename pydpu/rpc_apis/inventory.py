@@ -22,13 +22,3 @@ class InventoryAPI(Base):
                 return self.inventory_message.Inventory().deserialize(response)
         except grpc.RpcError as e:
             print(e)
-
-class InventoryAPI(Base):
-    def __init__(self, parent):
-        super(InventoryAPI, self).__init__(parent)
-
-    @property
-    def Inventory(self) -> InventoryAPI:
-        if self._Inventory_api_ is None:
-            self._Inventory_ = InventoryAPI(self)
-        return self._Inventory_

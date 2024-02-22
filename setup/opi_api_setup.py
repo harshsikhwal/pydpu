@@ -345,7 +345,7 @@ def to_camel_case(name):
     return ''.join(camel_case)
 
 
-def generate_hierarchy(parent_class_storage_map):
+def generate_rpc_class_hierarchy(parent_class_storage_map):
     root = RpcClassHierarchy('root')
     for key, internal_class_map in parent_class_storage_map.items():
         current = root
@@ -375,9 +375,10 @@ def generate_rpc_classes(root_node):
         
         for child in node.child_classes.keys():
             # generate the child classes here:
-            print("Child: ", child)
-            child_property = child_property + parent_class_child_property_template.format(child_class=to_camel_case(child)) + "\n"
-            stack.append(node.child_classes[child])
+            if child != node.classname:
+                print("Child: ", child)
+                child_property = child_property + parent_class_child_property_template.format(child_class=to_camel_case(child)) + "\n"
+                stack.append(node.child_classes[child])
         
         for leaf in node.leaf_class_map.keys():
             leaf_property = leaf_property + parent_class_leaf_property_template.format(proto_filename=leaf)
@@ -388,8 +389,11 @@ def generate_rpc_classes(root_node):
         for value in node.leaf_class_map.values():
             if parent_class != node.leaf_class_map.values():
                 generated_leaf_class = generated_leaf_class + value
-            
-        generated_classes = generated_leaf_class + parent_class + generated_classes
+        
+        if node.classname in node.leaf_class_map:
+            generated_classes = generated_leaf_class + generated_classes
+        else:
+            generated_classes = generated_leaf_class + parent_class + generated_classes
         
 
     return generated_classes
@@ -491,7 +495,7 @@ if __name__ == "__main__":
     # print(parent_classes)
     # return parent_classes
 
-    root_node = generate_hierarchy(parent_class_storage_map)
+    root_node = generate_rpc_class_hierarchy(parent_class_storage_map)
 
     # print_classes(root_node)
 
