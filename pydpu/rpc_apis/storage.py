@@ -881,7 +881,7 @@ class BackendNullAPI(Base):
     def backend_null_pb2(self):
         return backend_null_pb2
 
-    def CreateNullVolume(self, request):
+    def create_null_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.CreateNullVolumeRequest())
@@ -892,7 +892,7 @@ class BackendNullAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def DeleteNullVolume(self, request):
+    def delete_null_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.DeleteNullVolumeRequest())
@@ -903,7 +903,7 @@ class BackendNullAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def UpdateNullVolume(self, request):
+    def update_null_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.UpdateNullVolumeRequest())
@@ -914,7 +914,7 @@ class BackendNullAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def ListNullVolumes(self, request):
+    def list_null_volumes(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.ListNullVolumesRequest())
@@ -925,7 +925,7 @@ class BackendNullAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def GetNullVolume(self, request):
+    def get_null_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.GetNullVolumeRequest())
@@ -936,7 +936,7 @@ class BackendNullAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def StatsNullVolume(self, request):
+    def get_null_volume_stats(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_null_pb2.StatsNullVolumeRequest())
@@ -972,7 +972,7 @@ class BackendAioAPI(Base):
     def backend_aio_pb2(self):
         return backend_aio_pb2
 
-    def CreateAioVolume(self, request):
+    def create_aio_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_aio_pb2.CreateAioVolumeRequest())
@@ -983,7 +983,7 @@ class BackendAioAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def DeleteAioVolume(self, request):
+    def delete_aio_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_aio_pb2.DeleteAioVolumeRequest())
@@ -994,7 +994,7 @@ class BackendAioAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def UpdateAioVolume(self, request):
+    def update_aio_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_aio_pb2.UpdateAioVolumeRequest())
@@ -1005,7 +1005,7 @@ class BackendAioAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def ListAioVolumes(self, request):
+    def list_aio_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_aio_pb2.ListAioVolumesRequest())
@@ -1027,7 +1027,7 @@ class BackendAioAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def StatsAioVolume(self, request):
+    def stats_aio_volume(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, backend_aio_pb2.StatsAioVolumeRequest())

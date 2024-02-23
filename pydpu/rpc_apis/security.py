@@ -75,7 +75,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecListSas(self, request):
+    def list_ipsec_sas(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecListSasRequest())
@@ -86,7 +86,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecListConns(self, request):
+    def list_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecListConnsRequest())
@@ -97,7 +97,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecListCerts(self, request):
+    def list_ipsec_certs(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecListCertsRequest())
@@ -108,7 +108,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecLoadConn(self, request):
+    def load_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecLoadConnRequest())
@@ -119,7 +119,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecUnloadConn(self, request):
+    def unload_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecUnloadConnRequest())

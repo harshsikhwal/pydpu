@@ -20,7 +20,7 @@ class OpenconfigInterfacesAPI(Base):
     def openconfig_interfaces_pb2(self):
         return openconfig_interfaces_pb2
 
-    def GetNetInterface(self, request):
+    def get_net_interface(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, openconfig_interfaces_pb2.GetNetInterfaceRequest())
@@ -31,7 +31,7 @@ class OpenconfigInterfacesAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def ListNetInterfaces(self, request):
+    def list_net_interface(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, openconfig_interfaces_pb2.ListNetInterfacesRequest())
@@ -42,7 +42,7 @@ class OpenconfigInterfacesAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def UpdateNetInterface(self, request):
+    def update_net_interface(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, openconfig_interfaces_pb2.UpdateNetInterfaceRequest())
