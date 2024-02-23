@@ -45,10 +45,10 @@ class {leaf_api}API(Base):
 
 leaf_api_stub_template = """self.{service_name}Stub = {proto_filename}_pb2_grpc.{service_name}Stub(self.channel)"""
 
-leaf_api_property_message_template = """
+leaf_api_property_template = """
     @property
-    def {proto_filename}_message(self):
-        return {proto_filename}_message
+    def {property_name}(self):
+        return {property_name}
 """
 
 leaf_api_def_template = """
@@ -244,7 +244,7 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
         service_name = ""
 
         for index in range(len(tokens)):
-            
+            rpc_wrapper_name = ""
             if tokens[index] == "service" and tokens[index + 2] == "{":
 
                 # this will be the stub name
@@ -257,10 +257,11 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
 
                 # iterate till we get '}'
                 index = index + 3
+                
                 while index < len(tokens):
 
                     # initialize to empty
-                    rpc_wrapper_name = ""
+                   
                     rpc_request = ""
                     rpc_name = ""
                     rpc_response = ""                    
@@ -306,7 +307,7 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
                             rpc_wrapper_name = rpc_name
 
                         leaf_class_functions = leaf_class_functions + leaf_api_def_template.format(rpc_wrapper_name=rpc_wrapper_name, proto_filename=proto_storage_obj.proto_filename.replace(".proto", ""), rpc_request=rpc_request, service_name=service_name, rpc_name=rpc_name, rpc_response=rpc_response) 
-                
+                        rpc_wrapper_name = ""
                     index = index + 1
             
                 # generate the template
@@ -316,7 +317,7 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
         # TODO: better logic for camel case
         leaf_classes = leaf_api_class_template.format(leaf_api=to_camel_case(proto_storage_obj.proto_filename.replace(".proto", "")))
 
-        leaf_classes = leaf_classes + leaf_stubs + leaf_class_functions
+        leaf_classes = leaf_classes + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_messages") + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_pb2") + leaf_stubs + leaf_class_functions
         print("leaf_classes = ", leaf_classes)
     
     proto_filename_no_ext = to_camel_case(proto_storage_obj.proto_filename.replace(".proto", ""))

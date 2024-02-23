@@ -11,9 +11,25 @@ class FrontendVirtioFsAPI(Base):
     def __init__(self, parent):
         super(FrontendVirtioFsAPI, self).__init__(parent)
 
+    @property
+    def frontend_virtio_fs_messages(self):
+        return frontend_virtio_fs_messages
+
+    @property
+    def frontend_virtio_fs_pb2(self):
+        return frontend_virtio_fs_pb2
+
 class MiddleendQosVolumeAPI(Base):
     def __init__(self, parent):
         super(MiddleendQosVolumeAPI, self).__init__(parent)
+
+    @property
+    def middleend_qos_volume_messages(self):
+        return middleend_qos_volume_messages
+
+    @property
+    def middleend_qos_volume_pb2(self):
+        return middleend_qos_volume_pb2
         self.MiddleendQosVolumeServiceStub = middleend_qos_volume_pb2_grpc.MiddleendQosVolumeServiceStub(self.channel)
 
     def CreateQosVolume(self, request):
@@ -85,6 +101,14 @@ class MiddleendQosVolumeAPI(Base):
 class BackendNvmeAPI(Base):
     def __init__(self, parent):
         super(BackendNvmeAPI, self).__init__(parent)
+
+    @property
+    def backend_nvme_messages(self):
+        return backend_nvme_messages
+
+    @property
+    def backend_nvme_pb2(self):
+        return backend_nvme_pb2
         self.NvmeRemoteControllerServiceStub = backend_nvme_pb2_grpc.NvmeRemoteControllerServiceStub(self.channel)
 
     def CreateNvmeRemoteController(self, request):
@@ -255,6 +279,14 @@ class BackendNvmeAPI(Base):
 class FrontendVirtioScsiAPI(Base):
     def __init__(self, parent):
         super(FrontendVirtioScsiAPI, self).__init__(parent)
+
+    @property
+    def frontend_virtio_scsi_messages(self):
+        return frontend_virtio_scsi_messages
+
+    @property
+    def frontend_virtio_scsi_pb2(self):
+        return frontend_virtio_scsi_pb2
         self.FrontendVirtioScsiServiceStub = frontend_virtio_scsi_pb2_grpc.FrontendVirtioScsiServiceStub(self.channel)
 
     def CreateVirtioScsiTarget(self, request):
@@ -458,6 +490,14 @@ class FrontendVirtioScsiAPI(Base):
 class FrontendNvmeAPI(Base):
     def __init__(self, parent):
         super(FrontendNvmeAPI, self).__init__(parent)
+
+    @property
+    def frontend_nvme_messages(self):
+        return frontend_nvme_messages
+
+    @property
+    def frontend_nvme_pb2(self):
+        return frontend_nvme_pb2
         self.FrontendNvmeServiceStub = frontend_nvme_pb2_grpc.FrontendNvmeServiceStub(self.channel)
 
     def CreateNvmeSubsystem(self, request):
@@ -661,6 +701,14 @@ class FrontendNvmeAPI(Base):
 class FrontendVirtioBlkAPI(Base):
     def __init__(self, parent):
         super(FrontendVirtioBlkAPI, self).__init__(parent)
+
+    @property
+    def frontend_virtio_blk_messages(self):
+        return frontend_virtio_blk_messages
+
+    @property
+    def frontend_virtio_blk_pb2(self):
+        return frontend_virtio_blk_pb2
         self.FrontendVirtioBlkServiceStub = frontend_virtio_blk_pb2_grpc.FrontendVirtioBlkServiceStub(self.channel)
 
     def CreateVirtioBlk(self, request):
@@ -733,9 +781,25 @@ class OpicommonAPI(Base):
     def __init__(self, parent):
         super(OpicommonAPI, self).__init__(parent)
 
+    @property
+    def opicommon_messages(self):
+        return opicommon_messages
+
+    @property
+    def opicommon_pb2(self):
+        return opicommon_pb2
+
 class MiddleendEncryptionAPI(Base):
     def __init__(self, parent):
         super(MiddleendEncryptionAPI, self).__init__(parent)
+
+    @property
+    def middleend_encryption_messages(self):
+        return middleend_encryption_messages
+
+    @property
+    def middleend_encryption_pb2(self):
+        return middleend_encryption_pb2
         self.MiddleendEncryptionServiceStub = middleend_encryption_pb2_grpc.MiddleendEncryptionServiceStub(self.channel)
 
     def CreateEncryptedVolume(self, request):
@@ -807,6 +871,14 @@ class MiddleendEncryptionAPI(Base):
 class BackendNullAPI(Base):
     def __init__(self, parent):
         super(BackendNullAPI, self).__init__(parent)
+
+    @property
+    def backend_null_messages(self):
+        return backend_null_messages
+
+    @property
+    def backend_null_pb2(self):
+        return backend_null_pb2
         self.NullVolumeServiceStub = backend_null_pb2_grpc.NullVolumeServiceStub(self.channel)
 
     def CreateNullVolume(self, request):
@@ -879,9 +951,25 @@ class BackendIscsiAPI(Base):
     def __init__(self, parent):
         super(BackendIscsiAPI, self).__init__(parent)
 
+    @property
+    def backend_iscsi_messages(self):
+        return backend_iscsi_messages
+
+    @property
+    def backend_iscsi_pb2(self):
+        return backend_iscsi_pb2
+
 class BackendAioAPI(Base):
     def __init__(self, parent):
         super(BackendAioAPI, self).__init__(parent)
+
+    @property
+    def backend_aio_messages(self):
+        return backend_aio_messages
+
+    @property
+    def backend_aio_pb2(self):
+        return backend_aio_pb2
         self.AioVolumeServiceStub = backend_aio_pb2_grpc.AioVolumeServiceStub(self.channel)
 
     def CreateAioVolume(self, request):

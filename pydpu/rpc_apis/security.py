@@ -10,9 +10,17 @@ import json
 class IpsecAPI(Base):
     def __init__(self, parent):
         super(IpsecAPI, self).__init__(parent)
+
+    @property
+    def ipsec_messages(self):
+        return ipsec_messages
+
+    @property
+    def ipsec_pb2(self):
+        return ipsec_pb2
         self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
-    def IPsecVersion(self, request):
+    def get_ipsec_version(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecVersionRequest)
@@ -23,7 +31,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecStats(self, request):
+    def get_ipsec_stats(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecStatsRequest)
@@ -34,7 +42,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecInitiate(self, request):
+    def initiate_ipsec(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecInitiateRequest)
@@ -45,7 +53,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecTerminate(self, request):
+    def terminate_ipsec(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecTerminateRequest)
@@ -56,7 +64,7 @@ class IpsecAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def IPsecRekey(self, request):
+    def rekey_ipsec(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, ipsec_pb2.IPsecRekeyRequest)

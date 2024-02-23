@@ -10,9 +10,17 @@ import json
 class InventoryAPI(Base):
     def __init__(self, parent):
         super(InventoryAPI, self).__init__(parent)
+
+    @property
+    def inventory_messages(self):
+        return inventory_messages
+
+    @property
+    def inventory_pb2(self):
+        return inventory_pb2
         self.InventoryServiceStub = inventory_pb2_grpc.InventoryServiceStub(self.channel)
 
-    def GetInventory(self, request):
+    def =(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, inventory_pb2.GetInventoryRequest)

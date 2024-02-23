@@ -3,29 +3,18 @@
 
 import sys
 import os
+from pydpu.pydpu.dpu import Dpu
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-relative_path = "..\pydpu"
-
-absolute_path = os.path.join(current_dir, relative_path)
-
-sys.path.append(absolute_path)
-
-from dpu import Dpu
-
-import grpc
-
-dpu = Dpu()
-dpu.connect_grpc_insecure_channel("10.36.78.168", "50151")
+dpu = Dpu("10.36.78.168", 50151)
+dpu.create_insecure_channel()
 
 # so IP Sec is present in Security. We call the security class and do the task:
 
-ipsec = dpu.security.ipsec
+ipsec = dpu.security.Ipsec
 
 # the pb2 message format for request and response:
 
-ipsec_message = dpu.security.ipsec.ipsec_message
+ipsec_message = ipsec.ipsec_message
 
 res = ipsec.get_ipsec_version(ipsec_message.IPsecVersionReq())
 
