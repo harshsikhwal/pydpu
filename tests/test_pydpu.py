@@ -14,7 +14,7 @@ ipsec = dpu.security.Ipsec
 
 # the pb2 message format for request and response:
 
-ipsec_message = ipsec.ipsec_message
+ipsec_message = ipsec.ipsec_messages
 
 res = ipsec.get_ipsec_version(ipsec_message.IPsecVersionReq())
 
@@ -24,7 +24,7 @@ res = ipsec.get_ipsec_stats(ipsec_message.IPsecStatsReq())
 
 # create tunnel 1
 
-tun1_0_0 = ipsec_message.IPsecLoadConnReq(
+tun1_0_0 = ipsec.ipsec_messages.IPsecLoadConnReq(
     connection=ipsec_message.Connection(
         name='tun1_0_0',
         version='2',
@@ -102,20 +102,20 @@ tun1_0_1 = ipsec_message.IPsecLoadConnReq(
     )
 )
 
-connection_1 = ipsec.load_ipsec_connection(tun1_0_0)
-connection_2 = ipsec.load_ipsec_connection(tun1_0_1)
+connection_1 = ipsec.IPsecLoadConn(tun1_0_0)
+connection_2 = ipsec.IPsecLoadConn(tun1_0_1)
 
 list_conn = ipsec_message.IPsecListConnsReq(ike='tun1_0_0')
 
-connections = ipsec.list_ipsec_conns(list_conn)
+connections = ipsec.IPsecListConns(list_conn)
 
 list_sa = ipsec_message.IPsecListSasReq(ike='tun1_0_0')
 
-sas = ipsec.list_ipsec_sas(list_sa)
+sas = ipsec.IPsecListSas(list_sa)
 
 list_cert = ipsec_message.IPsecListCertsReq()
 
-certs = ipsec.list_ipsec_certs(list_cert)
+certs = ipsec.IPsecListCerts(list_cert)
 
 
 # init_conn = stub.IPsecInitiate(

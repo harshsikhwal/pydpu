@@ -736,14 +736,14 @@ class ListChild:
 
 class ListConnAuth:
 
-    def __init__(self, group, revocation, aaa_id, eap_id, eapvendor, cacerts, class, certs, ca_id, xauth, cert_policy, xauth_id, eaptype, id):
+    def __init__(self, group, revocation, aaa_id, eap_id, eapvendor, cacerts, _class, certs, ca_id, xauth, cert_policy, xauth_id, eaptype, id):
         _group = group
         _revocation = revocation
         _aaa_id = aaa_id
         _eap_id = eap_id
         _eapvendor = eapvendor
         _cacerts = cacerts
-        _class = class
+        _class = _class
         _certs = certs
         _ca_id = ca_id
         _xauth = xauth
@@ -808,11 +808,11 @@ class ListConnAuth:
 
         
     @property
-    def class(self) -> str:
+    def _class(self) -> str:
         return self._class
 
-    @class.setter
-    def class(self, value: str):
+    @_class.setter
+    def _class(self, value: str):
         self._class = value
 
         
