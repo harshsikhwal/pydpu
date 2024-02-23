@@ -10,6 +10,7 @@ import json
 class IpsecAPI(Base):
     def __init__(self, parent):
         super(IpsecAPI, self).__init__(parent)
+        self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
     @property
     def ipsec_messages(self):
@@ -18,7 +19,6 @@ class IpsecAPI(Base):
     @property
     def ipsec_pb2(self):
         return ipsec_pb2
-        self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
     def get_ipsec_version(self, request):
         try:

@@ -10,6 +10,7 @@ import json
 class OpenconfigInterfacesAPI(Base):
     def __init__(self, parent):
         super(OpenconfigInterfacesAPI, self).__init__(parent)
+        self.NetInterfaceServiceStub = openconfig_interfaces_pb2_grpc.NetInterfaceServiceStub(self.channel)
 
     @property
     def openconfig_interfaces_messages(self):
@@ -18,7 +19,6 @@ class OpenconfigInterfacesAPI(Base):
     @property
     def openconfig_interfaces_pb2(self):
         return openconfig_interfaces_pb2
-        self.NetInterfaceServiceStub = openconfig_interfaces_pb2_grpc.NetInterfaceServiceStub(self.channel)
 
     def GetNetInterface(self, request):
         try:
@@ -180,6 +180,7 @@ class DeviceAPI(Base):
 class CloudrpcAPI(Base):
     def __init__(self, parent):
         super(CloudrpcAPI, self).__init__(parent)
+        self.CloudInfraServiceStub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.channel)
 
     @property
     def cloudrpc_messages(self):
@@ -188,7 +189,6 @@ class CloudrpcAPI(Base):
     @property
     def cloudrpc_pb2(self):
         return cloudrpc_pb2
-        self.CloudInfraServiceStub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.channel)
 
     def GetDeviceCapabilities(self, request):
         try:
@@ -1551,6 +1551,8 @@ class CloudAPI(Base):
 class L3XpuInfraMgrAPI(Base):
     def __init__(self, parent):
         super(L3XpuInfraMgrAPI, self).__init__(parent)
+        self.VrfServiceStub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.channel)
+        self.SviServiceStub = l3_xpu_infra_mgr_pb2_grpc.SviServiceStub(self.channel)
 
     @property
     def l3_xpu_infra_mgr_messages(self):
@@ -1559,8 +1561,6 @@ class L3XpuInfraMgrAPI(Base):
     @property
     def l3_xpu_infra_mgr_pb2(self):
         return l3_xpu_infra_mgr_pb2
-        self.VrfServiceStub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.channel)
-        self.SviServiceStub = l3_xpu_infra_mgr_pb2_grpc.SviServiceStub(self.channel)
 
     def CreateVrf(self, request):
         try:
@@ -1730,6 +1730,8 @@ class L3XpuInfraMgrAPI(Base):
 class L2XpuInfraMgrAPI(Base):
     def __init__(self, parent):
         super(L2XpuInfraMgrAPI, self).__init__(parent)
+        self.LogicalBridgeServiceStub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.channel)
+        self.BridgePortServiceStub = l2_xpu_infra_mgr_pb2_grpc.BridgePortServiceStub(self.channel)
 
     @property
     def l2_xpu_infra_mgr_messages(self):
@@ -1738,8 +1740,6 @@ class L2XpuInfraMgrAPI(Base):
     @property
     def l2_xpu_infra_mgr_pb2(self):
         return l2_xpu_infra_mgr_pb2
-        self.LogicalBridgeServiceStub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.channel)
-        self.BridgePortServiceStub = l2_xpu_infra_mgr_pb2_grpc.BridgePortServiceStub(self.channel)
 
     def CreateLogicalBridge(self, request):
         try:

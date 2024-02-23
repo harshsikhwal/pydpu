@@ -4,6 +4,7 @@ leaf_classes =
 class OpenconfigInterfacesAPI(Base):
     def __init__(self, parent):
         super(OpenconfigInterfacesAPI, self).__init__(parent)
+        self.NetInterfaceServiceStub = openconfig_interfaces_pb2_grpc.NetInterfaceServiceStub(self.channel)
 
     @property
     def openconfig_interfaces_messages(self):
@@ -12,7 +13,6 @@ class OpenconfigInterfacesAPI(Base):
     @property
     def openconfig_interfaces_pb2(self):
         return openconfig_interfaces_pb2
-        self.NetInterfaceServiceStub = openconfig_interfaces_pb2_grpc.NetInterfaceServiceStub(self.channel)
 
     def GetNetInterface(self, request):
         try:
@@ -168,6 +168,7 @@ leaf_classes =
 class CloudrpcAPI(Base):
     def __init__(self, parent):
         super(CloudrpcAPI, self).__init__(parent)
+        self.CloudInfraServiceStub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.channel)
 
     @property
     def cloudrpc_messages(self):
@@ -176,7 +177,6 @@ class CloudrpcAPI(Base):
     @property
     def cloudrpc_pb2(self):
         return cloudrpc_pb2
-        self.CloudInfraServiceStub = cloudrpc_pb2_grpc.CloudInfraServiceStub(self.channel)
 
     def GetDeviceCapabilities(self, request):
         try:
@@ -1457,6 +1457,8 @@ leaf_classes =
 class L3XpuInfraMgrAPI(Base):
     def __init__(self, parent):
         super(L3XpuInfraMgrAPI, self).__init__(parent)
+        self.VrfServiceStub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.channel)
+        self.SviServiceStub = l3_xpu_infra_mgr_pb2_grpc.SviServiceStub(self.channel)
 
     @property
     def l3_xpu_infra_mgr_messages(self):
@@ -1465,8 +1467,6 @@ class L3XpuInfraMgrAPI(Base):
     @property
     def l3_xpu_infra_mgr_pb2(self):
         return l3_xpu_infra_mgr_pb2
-        self.VrfServiceStub = l3_xpu_infra_mgr_pb2_grpc.VrfServiceStub(self.channel)
-        self.SviServiceStub = l3_xpu_infra_mgr_pb2_grpc.SviServiceStub(self.channel)
 
     def CreateVrf(self, request):
         try:
@@ -1637,6 +1637,8 @@ leaf_classes =
 class L2XpuInfraMgrAPI(Base):
     def __init__(self, parent):
         super(L2XpuInfraMgrAPI, self).__init__(parent)
+        self.LogicalBridgeServiceStub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.channel)
+        self.BridgePortServiceStub = l2_xpu_infra_mgr_pb2_grpc.BridgePortServiceStub(self.channel)
 
     @property
     def l2_xpu_infra_mgr_messages(self):
@@ -1645,8 +1647,6 @@ class L2XpuInfraMgrAPI(Base):
     @property
     def l2_xpu_infra_mgr_pb2(self):
         return l2_xpu_infra_mgr_pb2
-        self.LogicalBridgeServiceStub = l2_xpu_infra_mgr_pb2_grpc.LogicalBridgeServiceStub(self.channel)
-        self.BridgePortServiceStub = l2_xpu_infra_mgr_pb2_grpc.BridgePortServiceStub(self.channel)
 
     def CreateLogicalBridge(self, request):
         try:
@@ -1856,6 +1856,7 @@ leaf_classes =
 class MiddleendQosVolumeAPI(Base):
     def __init__(self, parent):
         super(MiddleendQosVolumeAPI, self).__init__(parent)
+        self.MiddleendQosVolumeServiceStub = middleend_qos_volume_pb2_grpc.MiddleendQosVolumeServiceStub(self.channel)
 
     @property
     def middleend_qos_volume_messages(self):
@@ -1864,7 +1865,6 @@ class MiddleendQosVolumeAPI(Base):
     @property
     def middleend_qos_volume_pb2(self):
         return middleend_qos_volume_pb2
-        self.MiddleendQosVolumeServiceStub = middleend_qos_volume_pb2_grpc.MiddleendQosVolumeServiceStub(self.channel)
 
     def CreateQosVolume(self, request):
         try:
@@ -1936,6 +1936,7 @@ leaf_classes =
 class BackendNvmeAPI(Base):
     def __init__(self, parent):
         super(BackendNvmeAPI, self).__init__(parent)
+        self.NvmeRemoteControllerServiceStub = backend_nvme_pb2_grpc.NvmeRemoteControllerServiceStub(self.channel)
 
     @property
     def backend_nvme_messages(self):
@@ -1944,7 +1945,6 @@ class BackendNvmeAPI(Base):
     @property
     def backend_nvme_pb2(self):
         return backend_nvme_pb2
-        self.NvmeRemoteControllerServiceStub = backend_nvme_pb2_grpc.NvmeRemoteControllerServiceStub(self.channel)
 
     def CreateNvmeRemoteController(self, request):
         try:
@@ -2115,6 +2115,7 @@ leaf_classes =
 class FrontendVirtioScsiAPI(Base):
     def __init__(self, parent):
         super(FrontendVirtioScsiAPI, self).__init__(parent)
+        self.FrontendVirtioScsiServiceStub = frontend_virtio_scsi_pb2_grpc.FrontendVirtioScsiServiceStub(self.channel)
 
     @property
     def frontend_virtio_scsi_messages(self):
@@ -2123,7 +2124,6 @@ class FrontendVirtioScsiAPI(Base):
     @property
     def frontend_virtio_scsi_pb2(self):
         return frontend_virtio_scsi_pb2
-        self.FrontendVirtioScsiServiceStub = frontend_virtio_scsi_pb2_grpc.FrontendVirtioScsiServiceStub(self.channel)
 
     def CreateVirtioScsiTarget(self, request):
         try:
@@ -2327,6 +2327,7 @@ leaf_classes =
 class FrontendNvmeAPI(Base):
     def __init__(self, parent):
         super(FrontendNvmeAPI, self).__init__(parent)
+        self.FrontendNvmeServiceStub = frontend_nvme_pb2_grpc.FrontendNvmeServiceStub(self.channel)
 
     @property
     def frontend_nvme_messages(self):
@@ -2335,7 +2336,6 @@ class FrontendNvmeAPI(Base):
     @property
     def frontend_nvme_pb2(self):
         return frontend_nvme_pb2
-        self.FrontendNvmeServiceStub = frontend_nvme_pb2_grpc.FrontendNvmeServiceStub(self.channel)
 
     def CreateNvmeSubsystem(self, request):
         try:
@@ -2539,6 +2539,7 @@ leaf_classes =
 class FrontendVirtioBlkAPI(Base):
     def __init__(self, parent):
         super(FrontendVirtioBlkAPI, self).__init__(parent)
+        self.FrontendVirtioBlkServiceStub = frontend_virtio_blk_pb2_grpc.FrontendVirtioBlkServiceStub(self.channel)
 
     @property
     def frontend_virtio_blk_messages(self):
@@ -2547,7 +2548,6 @@ class FrontendVirtioBlkAPI(Base):
     @property
     def frontend_virtio_blk_pb2(self):
         return frontend_virtio_blk_pb2
-        self.FrontendVirtioBlkServiceStub = frontend_virtio_blk_pb2_grpc.FrontendVirtioBlkServiceStub(self.channel)
 
     def CreateVirtioBlk(self, request):
         try:
@@ -2632,6 +2632,7 @@ leaf_classes =
 class MiddleendEncryptionAPI(Base):
     def __init__(self, parent):
         super(MiddleendEncryptionAPI, self).__init__(parent)
+        self.MiddleendEncryptionServiceStub = middleend_encryption_pb2_grpc.MiddleendEncryptionServiceStub(self.channel)
 
     @property
     def middleend_encryption_messages(self):
@@ -2640,7 +2641,6 @@ class MiddleendEncryptionAPI(Base):
     @property
     def middleend_encryption_pb2(self):
         return middleend_encryption_pb2
-        self.MiddleendEncryptionServiceStub = middleend_encryption_pb2_grpc.MiddleendEncryptionServiceStub(self.channel)
 
     def CreateEncryptedVolume(self, request):
         try:
@@ -2712,6 +2712,7 @@ leaf_classes =
 class BackendNullAPI(Base):
     def __init__(self, parent):
         super(BackendNullAPI, self).__init__(parent)
+        self.NullVolumeServiceStub = backend_null_pb2_grpc.NullVolumeServiceStub(self.channel)
 
     @property
     def backend_null_messages(self):
@@ -2720,7 +2721,6 @@ class BackendNullAPI(Base):
     @property
     def backend_null_pb2(self):
         return backend_null_pb2
-        self.NullVolumeServiceStub = backend_null_pb2_grpc.NullVolumeServiceStub(self.channel)
 
     def CreateNullVolume(self, request):
         try:
@@ -2805,6 +2805,7 @@ leaf_classes =
 class BackendAioAPI(Base):
     def __init__(self, parent):
         super(BackendAioAPI, self).__init__(parent)
+        self.AioVolumeServiceStub = backend_aio_pb2_grpc.AioVolumeServiceStub(self.channel)
 
     @property
     def backend_aio_messages(self):
@@ -2813,7 +2814,6 @@ class BackendAioAPI(Base):
     @property
     def backend_aio_pb2(self):
         return backend_aio_pb2
-        self.AioVolumeServiceStub = backend_aio_pb2_grpc.AioVolumeServiceStub(self.channel)
 
     def CreateAioVolume(self, request):
         try:
@@ -2885,6 +2885,7 @@ leaf_classes =
 class InventoryAPI(Base):
     def __init__(self, parent):
         super(InventoryAPI, self).__init__(parent)
+        self.InventoryServiceStub = inventory_pb2_grpc.InventoryServiceStub(self.channel)
 
     @property
     def inventory_messages(self):
@@ -2893,9 +2894,8 @@ class InventoryAPI(Base):
     @property
     def inventory_pb2(self):
         return inventory_pb2
-        self.InventoryServiceStub = inventory_pb2_grpc.InventoryServiceStub(self.channel)
 
-    def =(self, request):
+    def get_inventory(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, inventory_pb2.GetInventoryRequest)
@@ -2910,6 +2910,7 @@ leaf_classes =
 class IpsecAPI(Base):
     def __init__(self, parent):
         super(IpsecAPI, self).__init__(parent)
+        self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
     @property
     def ipsec_messages(self):
@@ -2918,7 +2919,6 @@ class IpsecAPI(Base):
     @property
     def ipsec_pb2(self):
         return ipsec_pb2
-        self.IPsecServiceStub = ipsec_pb2_grpc.IPsecServiceStub(self.channel)
 
     def get_ipsec_version(self, request):
         try:
@@ -3031,7 +3031,7 @@ class IpsecAPI(Base):
             print(e)
 
 network
-values =  <__main__.RpcClassHierarchy object at 0x7fb419bd3d30>
+values =  <__main__.RpcClassHierarchy object at 0x7f8b74dd3d00>
 Generating the Parent Class:  Network
 Child Classes: 
 Child:  opinetcommon
@@ -3050,14 +3050,14 @@ Child Classes:
 Generating the Parent Class:  Opinetcommon
 Child Classes: 
 storage
-values =  <__main__.RpcClassHierarchy object at 0x7fb419bd2e00>
+values =  <__main__.RpcClassHierarchy object at 0x7f8b74dd2dd0>
 Generating the Parent Class:  Storage
 Child Classes: 
 inventory
-values =  <__main__.RpcClassHierarchy object at 0x7fb419bd2da0>
+values =  <__main__.RpcClassHierarchy object at 0x7f8b74dd2d70>
 Generating the Parent Class:  Inventory
 Child Classes: 
 security
-values =  <__main__.RpcClassHierarchy object at 0x7fb419bd2d40>
+values =  <__main__.RpcClassHierarchy object at 0x7f8b74dd2d10>
 Generating the Parent Class:  Security
 Child Classes: 

@@ -317,7 +317,7 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
         # TODO: better logic for camel case
         leaf_classes = leaf_api_class_template.format(leaf_api=to_camel_case(proto_storage_obj.proto_filename.replace(".proto", "")))
 
-        leaf_classes = leaf_classes + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_messages") + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_pb2") + leaf_stubs + leaf_class_functions
+        leaf_classes = leaf_classes + leaf_stubs + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_messages") + leaf_api_property_template.format(property_name=proto_storage_obj.proto_filename.replace(".proto", "") + "_pb2") + leaf_class_functions
         print("leaf_classes = ", leaf_classes)
     
     proto_filename_no_ext = to_camel_case(proto_storage_obj.proto_filename.replace(".proto", ""))
