@@ -300,6 +300,8 @@ def generate_rpc_class_from_proto(parent_class_storage_map, proto_storage_obj):
                                 if "{" in rpc_response:
                                     stack.append("{")
                                     rpc_response = rpc_response.replace("{", "")
+                                    index = index + 1
+                                index = index + 2
 
                         # print("\"\"\""  + rpc_name, " " , rpc_request, " ", rpc_response + "\"\"\"" )
                         # validation:

@@ -1621,61 +1621,6 @@ class L3XpuInfraMgrAPI(Base):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.CreateSviRequest())
-            res_obj = self.VrfServiceStub.CreateSvi(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l3_xpu_infra_mgr_message.Svi().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def ListSvis(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.ListSvisRequest())
-            res_obj = self.VrfServiceStub.ListSvis(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l3_xpu_infra_mgr_message.ListSvisResponse().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def GetSvi(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.GetSviRequest())
-            res_obj = self.VrfServiceStub.GetSvi(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l3_xpu_infra_mgr_message.Svi().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def DeleteSvi(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.DeleteSviRequest())
-            res_obj = self.VrfServiceStub.DeleteSvi(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l3_xpu_infra_mgr_message.google.protobuf.Empty().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def UpdateSvi(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.UpdateSviRequest())
-            res_obj = self.VrfServiceStub.UpdateSvi(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l3_xpu_infra_mgr_message.Svi().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def CreateSvi(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.CreateSviRequest())
             res_obj = self.SviServiceStub.CreateSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1741,7 +1686,7 @@ class L2XpuInfraMgrAPI(Base):
     def l2_xpu_infra_mgr_pb2(self):
         return l2_xpu_infra_mgr_pb2
 
-    def CreateLogicalBridge(self, request):
+    def create_logical_bridge(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateLogicalBridgeRequest())
@@ -1752,7 +1697,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def ListLogicalBridges(self, request):
+    def list_logical_bridges(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListLogicalBridgesRequest())
@@ -1763,7 +1708,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def GetLogicalBridge(self, request):
+    def get_logical_bridge(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetLogicalBridgeRequest())
@@ -1774,7 +1719,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def DeleteLogicalBridge(self, request):
+    def delete_logical_bridge(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteLogicalBridgeRequest())
@@ -1785,7 +1730,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def UpdateLogicalBridge(self, request):
+    def update_logical_bridge(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateLogicalBridgeRequest())
@@ -1796,62 +1741,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def CreateBridgePort(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
-            res_obj = self.LogicalBridgeServiceStub.CreateBridgePort(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l2_xpu_infra_mgr_message.BridgePort().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def ListBridgePorts(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
-            res_obj = self.LogicalBridgeServiceStub.ListBridgePorts(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l2_xpu_infra_mgr_message.ListBridgePortsResponse().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def GetBridgePort(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
-            res_obj = self.LogicalBridgeServiceStub.GetBridgePort(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l2_xpu_infra_mgr_message.BridgePort().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def DeleteBridgePort(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
-            res_obj = self.LogicalBridgeServiceStub.DeleteBridgePort(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l2_xpu_infra_mgr_message.google.protobuf.Empty().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def UpdateBridgePort(self, request):
-        try:
-            request = json.dumps(request)
-            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
-            res_obj = self.LogicalBridgeServiceStub.UpdateBridgePort(request=req_obj)
-            response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
-            if response is not None:
-                return self.l2_xpu_infra_mgr_message.BridgePort().deserialize(response)
-        except grpc.RpcError as e:
-            print(e)
-
-    def CreateBridgePort(self, request):
+    def create_bridge_port(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
@@ -1862,7 +1752,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def ListBridgePorts(self, request):
+    def list_bridge_ports(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
@@ -1873,7 +1763,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def GetBridgePort(self, request):
+    def get_bridge_port(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
@@ -1884,7 +1774,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def DeleteBridgePort(self, request):
+    def delete_bridge_port(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
@@ -1895,7 +1785,7 @@ class L2XpuInfraMgrAPI(Base):
         except grpc.RpcError as e:
             print(e)
 
-    def UpdateBridgePort(self, request):
+    def update_bridge_port(self, request):
         try:
             request = json.dumps(request)
             req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
