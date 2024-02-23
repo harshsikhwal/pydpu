@@ -23,7 +23,7 @@ class InventoryAPI(Base):
     def get_inventory(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, inventory_pb2.GetInventoryRequest())
+            req_obj = json_format.Parse(request, self.inventory_pb2.GetInventoryRequest())
             res_obj = self.InventoryServiceStub.GetInventory(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:

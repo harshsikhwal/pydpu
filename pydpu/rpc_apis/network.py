@@ -23,7 +23,7 @@ class OpenconfigInterfacesAPI(Base):
     def get_net_interface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, openconfig_interfaces_pb2.GetNetInterfaceRequest())
+            req_obj = json_format.Parse(request, self.openconfig_interfaces_pb2.GetNetInterfaceRequest())
             res_obj = self.NetInterfaceServiceStub.GetNetInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -34,7 +34,7 @@ class OpenconfigInterfacesAPI(Base):
     def list_net_interface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, openconfig_interfaces_pb2.ListNetInterfacesRequest())
+            req_obj = json_format.Parse(request, self.openconfig_interfaces_pb2.ListNetInterfacesRequest())
             res_obj = self.NetInterfaceServiceStub.ListNetInterfaces(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -45,7 +45,7 @@ class OpenconfigInterfacesAPI(Base):
     def update_net_interface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, openconfig_interfaces_pb2.UpdateNetInterfaceRequest())
+            req_obj = json_format.Parse(request, self.openconfig_interfaces_pb2.UpdateNetInterfaceRequest())
             res_obj = self.NetInterfaceServiceStub.UpdateNetInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -193,7 +193,7 @@ class CloudrpcAPI(Base):
     def GetDeviceCapabilities(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetDeviceCapabilitiesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetDeviceCapabilitiesRequest())
             res_obj = self.CloudInfraServiceStub.GetDeviceCapabilities(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -204,7 +204,7 @@ class CloudrpcAPI(Base):
     def CreateDevice(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateDeviceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateDeviceRequest())
             res_obj = self.CloudInfraServiceStub.CreateDevice(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -215,7 +215,7 @@ class CloudrpcAPI(Base):
     def DeleteDevice(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteDeviceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteDeviceRequest())
             res_obj = self.CloudInfraServiceStub.DeleteDevice(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -226,7 +226,7 @@ class CloudrpcAPI(Base):
     def UpdateDevice(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateDeviceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateDeviceRequest())
             res_obj = self.CloudInfraServiceStub.UpdateDevice(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -237,7 +237,7 @@ class CloudrpcAPI(Base):
     def ListDevices(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListDevicesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListDevicesRequest())
             res_obj = self.CloudInfraServiceStub.ListDevices(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -248,7 +248,7 @@ class CloudrpcAPI(Base):
     def GetDevice(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetDeviceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetDeviceRequest())
             res_obj = self.CloudInfraServiceStub.GetDevice(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -259,7 +259,7 @@ class CloudrpcAPI(Base):
     def UpdatePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdatePortRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdatePortRequest())
             res_obj = self.CloudInfraServiceStub.UpdatePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -270,7 +270,7 @@ class CloudrpcAPI(Base):
     def ListPorts(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListPortsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListPortsRequest())
             res_obj = self.CloudInfraServiceStub.ListPorts(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -281,7 +281,7 @@ class CloudrpcAPI(Base):
     def GetPort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetPortRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetPortRequest())
             res_obj = self.CloudInfraServiceStub.GetPort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -292,7 +292,7 @@ class CloudrpcAPI(Base):
     def CreateVnic(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateVnicRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateVnicRequest())
             res_obj = self.CloudInfraServiceStub.CreateVnic(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -303,7 +303,7 @@ class CloudrpcAPI(Base):
     def DeleteVnic(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteVnicRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteVnicRequest())
             res_obj = self.CloudInfraServiceStub.DeleteVnic(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -314,7 +314,7 @@ class CloudrpcAPI(Base):
     def UpdateVnic(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateVnicRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateVnicRequest())
             res_obj = self.CloudInfraServiceStub.UpdateVnic(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -325,7 +325,7 @@ class CloudrpcAPI(Base):
     def ListVnics(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListVnicsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListVnicsRequest())
             res_obj = self.CloudInfraServiceStub.ListVnics(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -336,7 +336,7 @@ class CloudrpcAPI(Base):
     def GetVnic(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetVnicRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetVnicRequest())
             res_obj = self.CloudInfraServiceStub.GetVnic(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -347,7 +347,7 @@ class CloudrpcAPI(Base):
     def CreateInterface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateInterfaceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateInterfaceRequest())
             res_obj = self.CloudInfraServiceStub.CreateInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -358,7 +358,7 @@ class CloudrpcAPI(Base):
     def DeleteInterface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteInterfaceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteInterfaceRequest())
             res_obj = self.CloudInfraServiceStub.DeleteInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -369,7 +369,7 @@ class CloudrpcAPI(Base):
     def UpdateInterface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateInterfaceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateInterfaceRequest())
             res_obj = self.CloudInfraServiceStub.UpdateInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -380,7 +380,7 @@ class CloudrpcAPI(Base):
     def ListInterfaces(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListInterfacesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListInterfacesRequest())
             res_obj = self.CloudInfraServiceStub.ListInterfaces(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -391,7 +391,7 @@ class CloudrpcAPI(Base):
     def GetInterface(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetInterfaceRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetInterfaceRequest())
             res_obj = self.CloudInfraServiceStub.GetInterface(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -402,7 +402,7 @@ class CloudrpcAPI(Base):
     def CreateRouteTable(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateRouteTableRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateRouteTableRequest())
             res_obj = self.CloudInfraServiceStub.CreateRouteTable(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -413,7 +413,7 @@ class CloudrpcAPI(Base):
     def DeleteRouteTable(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteRouteTableRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteRouteTableRequest())
             res_obj = self.CloudInfraServiceStub.DeleteRouteTable(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -424,7 +424,7 @@ class CloudrpcAPI(Base):
     def UpdateRouteTable(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateRouteTableRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateRouteTableRequest())
             res_obj = self.CloudInfraServiceStub.UpdateRouteTable(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -435,7 +435,7 @@ class CloudrpcAPI(Base):
     def ListRouteTables(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListRouteTablesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListRouteTablesRequest())
             res_obj = self.CloudInfraServiceStub.ListRouteTables(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -446,7 +446,7 @@ class CloudrpcAPI(Base):
     def GetRouteTable(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetRouteTableRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetRouteTableRequest())
             res_obj = self.CloudInfraServiceStub.GetRouteTable(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -457,7 +457,7 @@ class CloudrpcAPI(Base):
     def RouteTableGetStreaming(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.RouteTableGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.RouteTableGetRequest())
             res_obj = self.CloudInfraServiceStub.RouteTableGetStreaming(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -468,7 +468,7 @@ class CloudrpcAPI(Base):
     def CreateRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateRouteRequest())
             res_obj = self.CloudInfraServiceStub.CreateRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -479,7 +479,7 @@ class CloudrpcAPI(Base):
     def DeleteRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteRouteRequest())
             res_obj = self.CloudInfraServiceStub.DeleteRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -490,7 +490,7 @@ class CloudrpcAPI(Base):
     def UpdateRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateRouteRequest())
             res_obj = self.CloudInfraServiceStub.UpdateRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -501,7 +501,7 @@ class CloudrpcAPI(Base):
     def ListRoutes(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListRoutesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListRoutesRequest())
             res_obj = self.CloudInfraServiceStub.ListRoutes(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -512,7 +512,7 @@ class CloudrpcAPI(Base):
     def GetRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetRouteRequest())
             res_obj = self.CloudInfraServiceStub.GetRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -523,7 +523,7 @@ class CloudrpcAPI(Base):
     def RouteLookup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.RouteLookupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.RouteLookupRequest())
             res_obj = self.CloudInfraServiceStub.RouteLookup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -534,7 +534,7 @@ class CloudrpcAPI(Base):
     def CreateUnderlayRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateUnderlayRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateUnderlayRouteRequest())
             res_obj = self.CloudInfraServiceStub.CreateUnderlayRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -545,7 +545,7 @@ class CloudrpcAPI(Base):
     def DeleteUnderlayRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteUnderlayRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteUnderlayRouteRequest())
             res_obj = self.CloudInfraServiceStub.DeleteUnderlayRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -556,7 +556,7 @@ class CloudrpcAPI(Base):
     def UpdateUnderlayRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateUnderlayRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateUnderlayRouteRequest())
             res_obj = self.CloudInfraServiceStub.UpdateUnderlayRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -567,7 +567,7 @@ class CloudrpcAPI(Base):
     def ListUnderlayRoutes(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListUnderlayRoutesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListUnderlayRoutesRequest())
             res_obj = self.CloudInfraServiceStub.ListUnderlayRoutes(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -578,7 +578,7 @@ class CloudrpcAPI(Base):
     def GetUnderlayRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetUnderlayRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetUnderlayRouteRequest())
             res_obj = self.CloudInfraServiceStub.GetUnderlayRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -589,7 +589,7 @@ class CloudrpcAPI(Base):
     def CPRouteLookup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CPRouteGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CPRouteGetRequest())
             res_obj = self.CloudInfraServiceStub.CPRouteLookup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -600,7 +600,7 @@ class CloudrpcAPI(Base):
     def CPRouteRedistGet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CPRouteRedistGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CPRouteRedistGetRequest())
             res_obj = self.CloudInfraServiceStub.CPRouteRedistGet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -611,7 +611,7 @@ class CloudrpcAPI(Base):
     def CreateBgp(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateBgpRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateBgpRequest())
             res_obj = self.CloudInfraServiceStub.CreateBgp(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -622,7 +622,7 @@ class CloudrpcAPI(Base):
     def DeleteBgp(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteBgpRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteBgpRequest())
             res_obj = self.CloudInfraServiceStub.DeleteBgp(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -633,7 +633,7 @@ class CloudrpcAPI(Base):
     def UpdateBgp(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateBgpRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateBgpRequest())
             res_obj = self.CloudInfraServiceStub.UpdateBgp(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -644,7 +644,7 @@ class CloudrpcAPI(Base):
     def ListBgps(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListBgpsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListBgpsRequest())
             res_obj = self.CloudInfraServiceStub.ListBgps(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -655,7 +655,7 @@ class CloudrpcAPI(Base):
     def GetBgp(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetBgpRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetBgpRequest())
             res_obj = self.CloudInfraServiceStub.GetBgp(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -666,7 +666,7 @@ class CloudrpcAPI(Base):
     def CreateBGPPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateBGPPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateBGPPeerRequest())
             res_obj = self.CloudInfraServiceStub.CreateBGPPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -677,7 +677,7 @@ class CloudrpcAPI(Base):
     def DeleteBGPPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteBGPPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteBGPPeerRequest())
             res_obj = self.CloudInfraServiceStub.DeleteBGPPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -688,7 +688,7 @@ class CloudrpcAPI(Base):
     def UpdateBGPPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateBGPPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateBGPPeerRequest())
             res_obj = self.CloudInfraServiceStub.UpdateBGPPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -699,7 +699,7 @@ class CloudrpcAPI(Base):
     def ListBGPPeers(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListBGPPeersRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListBGPPeersRequest())
             res_obj = self.CloudInfraServiceStub.ListBGPPeers(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -710,7 +710,7 @@ class CloudrpcAPI(Base):
     def GetBGPPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetBGPPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetBGPPeerRequest())
             res_obj = self.CloudInfraServiceStub.GetBGPPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -721,7 +721,7 @@ class CloudrpcAPI(Base):
     def CreateBGPPeerAf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateBGPPeerAfRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateBGPPeerAfRequest())
             res_obj = self.CloudInfraServiceStub.CreateBGPPeerAf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -732,7 +732,7 @@ class CloudrpcAPI(Base):
     def DeleteBGPPeerAf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteBGPPeerAfRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteBGPPeerAfRequest())
             res_obj = self.CloudInfraServiceStub.DeleteBGPPeerAf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -743,7 +743,7 @@ class CloudrpcAPI(Base):
     def UpdateBGPPeerAf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateBGPPeerAfRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateBGPPeerAfRequest())
             res_obj = self.CloudInfraServiceStub.UpdateBGPPeerAf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -754,7 +754,7 @@ class CloudrpcAPI(Base):
     def ListBGPPeerAfs(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListBGPPeerAfsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListBGPPeerAfsRequest())
             res_obj = self.CloudInfraServiceStub.ListBGPPeerAfs(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -765,7 +765,7 @@ class CloudrpcAPI(Base):
     def GetBGPPeerAf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetBGPPeerAfRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetBGPPeerAfRequest())
             res_obj = self.CloudInfraServiceStub.GetBGPPeerAf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -776,7 +776,7 @@ class CloudrpcAPI(Base):
     def BGPClearRoute(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.BGPClearRouteRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.BGPClearRouteRequest())
             res_obj = self.CloudInfraServiceStub.BGPClearRoute(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -787,7 +787,7 @@ class CloudrpcAPI(Base):
     def BGPNLRIPrefixGet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.BGPNLRIPrefixGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.BGPNLRIPrefixGetRequest())
             res_obj = self.CloudInfraServiceStub.BGPNLRIPrefixGet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -798,7 +798,7 @@ class CloudrpcAPI(Base):
     def BGPPrfxCntrsGet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.BGPPrfxCntrsGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.BGPPrfxCntrsGetRequest())
             res_obj = self.CloudInfraServiceStub.BGPPrfxCntrsGet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -809,7 +809,7 @@ class CloudrpcAPI(Base):
     def BGPAdjRibOutGet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.BGPAdjRibOutGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.BGPAdjRibOutGetRequest())
             res_obj = self.CloudInfraServiceStub.BGPAdjRibOutGet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -820,7 +820,7 @@ class CloudrpcAPI(Base):
     def CreateMapping(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateMappingRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateMappingRequest())
             res_obj = self.CloudInfraServiceStub.CreateMapping(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -831,7 +831,7 @@ class CloudrpcAPI(Base):
     def DeleteMapping(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteMappingRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteMappingRequest())
             res_obj = self.CloudInfraServiceStub.DeleteMapping(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -842,7 +842,7 @@ class CloudrpcAPI(Base):
     def UpdateMapping(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateMappingRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateMappingRequest())
             res_obj = self.CloudInfraServiceStub.UpdateMapping(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -853,7 +853,7 @@ class CloudrpcAPI(Base):
     def ListMappings(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListMappingsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListMappingsRequest())
             res_obj = self.CloudInfraServiceStub.ListMappings(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -864,7 +864,7 @@ class CloudrpcAPI(Base):
     def GetMapping(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetMappingRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetMappingRequest())
             res_obj = self.CloudInfraServiceStub.GetMapping(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -875,7 +875,7 @@ class CloudrpcAPI(Base):
     def MappingGetStreaming(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.MappingGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.MappingGetRequest())
             res_obj = self.CloudInfraServiceStub.MappingGetStreaming(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -886,7 +886,7 @@ class CloudrpcAPI(Base):
     def CreateNextHop(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateNextHopRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateNextHopRequest())
             res_obj = self.CloudInfraServiceStub.CreateNextHop(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -897,7 +897,7 @@ class CloudrpcAPI(Base):
     def DeleteNextHop(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteNextHopRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteNextHopRequest())
             res_obj = self.CloudInfraServiceStub.DeleteNextHop(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -908,7 +908,7 @@ class CloudrpcAPI(Base):
     def UpdateNextHop(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateNextHopRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateNextHopRequest())
             res_obj = self.CloudInfraServiceStub.UpdateNextHop(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -919,7 +919,7 @@ class CloudrpcAPI(Base):
     def ListNextHop(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListNextHopRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListNextHopRequest())
             res_obj = self.CloudInfraServiceStub.ListNextHop(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -930,7 +930,7 @@ class CloudrpcAPI(Base):
     def GetNextHop(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetNextHopRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetNextHopRequest())
             res_obj = self.CloudInfraServiceStub.GetNextHop(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -941,7 +941,7 @@ class CloudrpcAPI(Base):
     def CreateNextHopGroup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateNextHopGroupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateNextHopGroupRequest())
             res_obj = self.CloudInfraServiceStub.CreateNextHopGroup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -952,7 +952,7 @@ class CloudrpcAPI(Base):
     def DeleteNextHopGroup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteNextHopGroupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteNextHopGroupRequest())
             res_obj = self.CloudInfraServiceStub.DeleteNextHopGroup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -963,7 +963,7 @@ class CloudrpcAPI(Base):
     def UpdateNextHopGroup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateNextHopGroupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateNextHopGroupRequest())
             res_obj = self.CloudInfraServiceStub.UpdateNextHopGroup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -974,7 +974,7 @@ class CloudrpcAPI(Base):
     def ListNextHopGroups(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListNextHopGroupsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListNextHopGroupsRequest())
             res_obj = self.CloudInfraServiceStub.ListNextHopGroups(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -985,7 +985,7 @@ class CloudrpcAPI(Base):
     def GetNextHopGroup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetNextHopGroupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetNextHopGroupRequest())
             res_obj = self.CloudInfraServiceStub.GetNextHopGroup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -996,7 +996,7 @@ class CloudrpcAPI(Base):
     def CreateSubnet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateSubnetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateSubnetRequest())
             res_obj = self.CloudInfraServiceStub.CreateSubnet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1007,7 +1007,7 @@ class CloudrpcAPI(Base):
     def DeleteSubnet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteSubnetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteSubnetRequest())
             res_obj = self.CloudInfraServiceStub.DeleteSubnet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1018,7 +1018,7 @@ class CloudrpcAPI(Base):
     def UpdateSubnet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateSubnetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateSubnetRequest())
             res_obj = self.CloudInfraServiceStub.UpdateSubnet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1029,7 +1029,7 @@ class CloudrpcAPI(Base):
     def ListSubnets(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListSubnetsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListSubnetsRequest())
             res_obj = self.CloudInfraServiceStub.ListSubnets(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1040,7 +1040,7 @@ class CloudrpcAPI(Base):
     def GetSubnet(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetSubnetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetSubnetRequest())
             res_obj = self.CloudInfraServiceStub.GetSubnet(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1051,7 +1051,7 @@ class CloudrpcAPI(Base):
     def CreateTunnel(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateTunnelRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateTunnelRequest())
             res_obj = self.CloudInfraServiceStub.CreateTunnel(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1062,7 +1062,7 @@ class CloudrpcAPI(Base):
     def DeleteTunnel(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteTunnelRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteTunnelRequest())
             res_obj = self.CloudInfraServiceStub.DeleteTunnel(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1073,7 +1073,7 @@ class CloudrpcAPI(Base):
     def UpdateTunnel(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateTunnelRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateTunnelRequest())
             res_obj = self.CloudInfraServiceStub.UpdateTunnel(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1084,7 +1084,7 @@ class CloudrpcAPI(Base):
     def ListTunnels(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListTunnelsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListTunnelsRequest())
             res_obj = self.CloudInfraServiceStub.ListTunnels(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1095,7 +1095,7 @@ class CloudrpcAPI(Base):
     def GetTunnel(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetTunnelRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetTunnelRequest())
             res_obj = self.CloudInfraServiceStub.GetTunnel(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1106,7 +1106,7 @@ class CloudrpcAPI(Base):
     def CreateVpc(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateVpcRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateVpcRequest())
             res_obj = self.CloudInfraServiceStub.CreateVpc(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1117,7 +1117,7 @@ class CloudrpcAPI(Base):
     def DeleteVpc(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteVpcRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteVpcRequest())
             res_obj = self.CloudInfraServiceStub.DeleteVpc(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1128,7 +1128,7 @@ class CloudrpcAPI(Base):
     def UpdateVpc(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateVpcRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateVpcRequest())
             res_obj = self.CloudInfraServiceStub.UpdateVpc(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1139,7 +1139,7 @@ class CloudrpcAPI(Base):
     def ListVpcs(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListVpcsRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListVpcsRequest())
             res_obj = self.CloudInfraServiceStub.ListVpcs(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1150,7 +1150,7 @@ class CloudrpcAPI(Base):
     def GetVpc(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetVpcRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetVpcRequest())
             res_obj = self.CloudInfraServiceStub.GetVpc(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1161,7 +1161,7 @@ class CloudrpcAPI(Base):
     def CreateVPCPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateVPCPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateVPCPeerRequest())
             res_obj = self.CloudInfraServiceStub.CreateVPCPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1172,7 +1172,7 @@ class CloudrpcAPI(Base):
     def DeleteVPCPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteVPCPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteVPCPeerRequest())
             res_obj = self.CloudInfraServiceStub.DeleteVPCPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1183,7 +1183,7 @@ class CloudrpcAPI(Base):
     def UpdateVPCPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateVPCPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateVPCPeerRequest())
             res_obj = self.CloudInfraServiceStub.UpdateVPCPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1194,7 +1194,7 @@ class CloudrpcAPI(Base):
     def ListVPCPeers(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListVPCPeersRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListVPCPeersRequest())
             res_obj = self.CloudInfraServiceStub.ListVPCPeers(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1205,7 +1205,7 @@ class CloudrpcAPI(Base):
     def GetVPCPeer(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetVPCPeerRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetVPCPeerRequest())
             res_obj = self.CloudInfraServiceStub.GetVPCPeer(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1216,7 +1216,7 @@ class CloudrpcAPI(Base):
     def CreateSecurityPolicy(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateSecurityPolicyRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateSecurityPolicyRequest())
             res_obj = self.CloudInfraServiceStub.CreateSecurityPolicy(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1227,7 +1227,7 @@ class CloudrpcAPI(Base):
     def DeleteSecurityPolicy(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteSecurityPolicyRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteSecurityPolicyRequest())
             res_obj = self.CloudInfraServiceStub.DeleteSecurityPolicy(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1238,7 +1238,7 @@ class CloudrpcAPI(Base):
     def UpdateSecurityPolicy(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateSecurityPolicyRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateSecurityPolicyRequest())
             res_obj = self.CloudInfraServiceStub.UpdateSecurityPolicy(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1249,7 +1249,7 @@ class CloudrpcAPI(Base):
     def ListSecurityPolicys(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListSecurityPolicysRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListSecurityPolicysRequest())
             res_obj = self.CloudInfraServiceStub.ListSecurityPolicys(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1260,7 +1260,7 @@ class CloudrpcAPI(Base):
     def GetSecurityPolicy(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetSecurityPolicyRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetSecurityPolicyRequest())
             res_obj = self.CloudInfraServiceStub.GetSecurityPolicy(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1271,7 +1271,7 @@ class CloudrpcAPI(Base):
     def CreateSecurityRule(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateSecurityRuleRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateSecurityRuleRequest())
             res_obj = self.CloudInfraServiceStub.CreateSecurityRule(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1282,7 +1282,7 @@ class CloudrpcAPI(Base):
     def DeleteSecurityRule(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteSecurityRuleRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteSecurityRuleRequest())
             res_obj = self.CloudInfraServiceStub.DeleteSecurityRule(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1293,7 +1293,7 @@ class CloudrpcAPI(Base):
     def UpdateSecurityRule(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateSecurityRuleRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateSecurityRuleRequest())
             res_obj = self.CloudInfraServiceStub.UpdateSecurityRule(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1304,7 +1304,7 @@ class CloudrpcAPI(Base):
     def ListSecurityRules(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListSecurityRulesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListSecurityRulesRequest())
             res_obj = self.CloudInfraServiceStub.ListSecurityRules(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1315,7 +1315,7 @@ class CloudrpcAPI(Base):
     def GetSecurityRule(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetSecurityRuleRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetSecurityRuleRequest())
             res_obj = self.CloudInfraServiceStub.GetSecurityRule(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1326,7 +1326,7 @@ class CloudrpcAPI(Base):
     def CreateSecurityProfile(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.CreateSecurityProfileRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.CreateSecurityProfileRequest())
             res_obj = self.CloudInfraServiceStub.CreateSecurityProfile(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1337,7 +1337,7 @@ class CloudrpcAPI(Base):
     def DeleteSecurityProfile(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.DeleteSecurityProfileRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.DeleteSecurityProfileRequest())
             res_obj = self.CloudInfraServiceStub.DeleteSecurityProfile(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1348,7 +1348,7 @@ class CloudrpcAPI(Base):
     def UpdateSecurityProfile(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.UpdateSecurityProfileRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.UpdateSecurityProfileRequest())
             res_obj = self.CloudInfraServiceStub.UpdateSecurityProfile(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1359,7 +1359,7 @@ class CloudrpcAPI(Base):
     def ListSecurityProfiles(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.ListSecurityProfilesRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.ListSecurityProfilesRequest())
             res_obj = self.CloudInfraServiceStub.ListSecurityProfiles(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1370,7 +1370,7 @@ class CloudrpcAPI(Base):
     def GetSecurityProfile(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.GetSecurityProfileRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.GetSecurityProfileRequest())
             res_obj = self.CloudInfraServiceStub.GetSecurityProfile(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1381,7 +1381,7 @@ class CloudrpcAPI(Base):
     def SecurityPolicyGetStreaming(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.SecurityPolicyGetRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.SecurityPolicyGetRequest())
             res_obj = self.CloudInfraServiceStub.SecurityPolicyGetStreaming(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1392,7 +1392,7 @@ class CloudrpcAPI(Base):
     def SecurityPolicyLookup(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, cloudrpc_pb2.SecurityPolicyLookupRequest())
+            req_obj = json_format.Parse(request, self.cloudrpc_pb2.SecurityPolicyLookupRequest())
             res_obj = self.CloudInfraServiceStub.SecurityPolicyLookup(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1565,7 +1565,7 @@ class L3XpuInfraMgrAPI(Base):
     def CreateVrf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.CreateVrfRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.CreateVrfRequest())
             res_obj = self.VrfServiceStub.CreateVrf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1576,7 +1576,7 @@ class L3XpuInfraMgrAPI(Base):
     def ListVrfs(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.ListVrfsRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.ListVrfsRequest())
             res_obj = self.VrfServiceStub.ListVrfs(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1587,7 +1587,7 @@ class L3XpuInfraMgrAPI(Base):
     def GetVrf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.GetVrfRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.GetVrfRequest())
             res_obj = self.VrfServiceStub.GetVrf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1598,7 +1598,7 @@ class L3XpuInfraMgrAPI(Base):
     def DeleteVrf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.DeleteVrfRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.DeleteVrfRequest())
             res_obj = self.VrfServiceStub.DeleteVrf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1609,7 +1609,7 @@ class L3XpuInfraMgrAPI(Base):
     def UpdateVrf(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.UpdateVrfRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.UpdateVrfRequest())
             res_obj = self.VrfServiceStub.UpdateVrf(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1620,7 +1620,7 @@ class L3XpuInfraMgrAPI(Base):
     def CreateSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.CreateSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.CreateSviRequest())
             res_obj = self.VrfServiceStub.CreateSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1631,7 +1631,7 @@ class L3XpuInfraMgrAPI(Base):
     def ListSvis(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.ListSvisRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.ListSvisRequest())
             res_obj = self.VrfServiceStub.ListSvis(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1642,7 +1642,7 @@ class L3XpuInfraMgrAPI(Base):
     def GetSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.GetSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.GetSviRequest())
             res_obj = self.VrfServiceStub.GetSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1653,7 +1653,7 @@ class L3XpuInfraMgrAPI(Base):
     def DeleteSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.DeleteSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.DeleteSviRequest())
             res_obj = self.VrfServiceStub.DeleteSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1664,7 +1664,7 @@ class L3XpuInfraMgrAPI(Base):
     def UpdateSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.UpdateSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.UpdateSviRequest())
             res_obj = self.VrfServiceStub.UpdateSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1675,7 +1675,7 @@ class L3XpuInfraMgrAPI(Base):
     def CreateSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.CreateSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.CreateSviRequest())
             res_obj = self.SviServiceStub.CreateSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1686,7 +1686,7 @@ class L3XpuInfraMgrAPI(Base):
     def ListSvis(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.ListSvisRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.ListSvisRequest())
             res_obj = self.SviServiceStub.ListSvis(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1697,7 +1697,7 @@ class L3XpuInfraMgrAPI(Base):
     def GetSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.GetSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.GetSviRequest())
             res_obj = self.SviServiceStub.GetSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1708,7 +1708,7 @@ class L3XpuInfraMgrAPI(Base):
     def DeleteSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.DeleteSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.DeleteSviRequest())
             res_obj = self.SviServiceStub.DeleteSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1719,7 +1719,7 @@ class L3XpuInfraMgrAPI(Base):
     def UpdateSvi(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l3_xpu_infra_mgr_pb2.UpdateSviRequest())
+            req_obj = json_format.Parse(request, self.l3_xpu_infra_mgr_pb2.UpdateSviRequest())
             res_obj = self.SviServiceStub.UpdateSvi(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1744,7 +1744,7 @@ class L2XpuInfraMgrAPI(Base):
     def CreateLogicalBridge(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.CreateLogicalBridgeRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateLogicalBridgeRequest())
             res_obj = self.LogicalBridgeServiceStub.CreateLogicalBridge(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1755,7 +1755,7 @@ class L2XpuInfraMgrAPI(Base):
     def ListLogicalBridges(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.ListLogicalBridgesRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListLogicalBridgesRequest())
             res_obj = self.LogicalBridgeServiceStub.ListLogicalBridges(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1766,7 +1766,7 @@ class L2XpuInfraMgrAPI(Base):
     def GetLogicalBridge(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.GetLogicalBridgeRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetLogicalBridgeRequest())
             res_obj = self.LogicalBridgeServiceStub.GetLogicalBridge(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1777,7 +1777,7 @@ class L2XpuInfraMgrAPI(Base):
     def DeleteLogicalBridge(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.DeleteLogicalBridgeRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteLogicalBridgeRequest())
             res_obj = self.LogicalBridgeServiceStub.DeleteLogicalBridge(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1788,7 +1788,7 @@ class L2XpuInfraMgrAPI(Base):
     def UpdateLogicalBridge(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.UpdateLogicalBridgeRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateLogicalBridgeRequest())
             res_obj = self.LogicalBridgeServiceStub.UpdateLogicalBridge(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1799,7 +1799,7 @@ class L2XpuInfraMgrAPI(Base):
     def CreateBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
             res_obj = self.LogicalBridgeServiceStub.CreateBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1810,7 +1810,7 @@ class L2XpuInfraMgrAPI(Base):
     def ListBridgePorts(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
             res_obj = self.LogicalBridgeServiceStub.ListBridgePorts(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1821,7 +1821,7 @@ class L2XpuInfraMgrAPI(Base):
     def GetBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
             res_obj = self.LogicalBridgeServiceStub.GetBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1832,7 +1832,7 @@ class L2XpuInfraMgrAPI(Base):
     def DeleteBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
             res_obj = self.LogicalBridgeServiceStub.DeleteBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1843,7 +1843,7 @@ class L2XpuInfraMgrAPI(Base):
     def UpdateBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
             res_obj = self.LogicalBridgeServiceStub.UpdateBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1854,7 +1854,7 @@ class L2XpuInfraMgrAPI(Base):
     def CreateBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.CreateBridgePortRequest())
             res_obj = self.BridgePortServiceStub.CreateBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1865,7 +1865,7 @@ class L2XpuInfraMgrAPI(Base):
     def ListBridgePorts(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.ListBridgePortsRequest())
             res_obj = self.BridgePortServiceStub.ListBridgePorts(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1876,7 +1876,7 @@ class L2XpuInfraMgrAPI(Base):
     def GetBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.GetBridgePortRequest())
             res_obj = self.BridgePortServiceStub.GetBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1887,7 +1887,7 @@ class L2XpuInfraMgrAPI(Base):
     def DeleteBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.DeleteBridgePortRequest())
             res_obj = self.BridgePortServiceStub.DeleteBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -1898,7 +1898,7 @@ class L2XpuInfraMgrAPI(Base):
     def UpdateBridgePort(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
+            req_obj = json_format.Parse(request, self.l2_xpu_infra_mgr_pb2.UpdateBridgePortRequest())
             res_obj = self.BridgePortServiceStub.UpdateBridgePort(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:

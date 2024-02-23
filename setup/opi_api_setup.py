@@ -55,7 +55,7 @@ leaf_api_def_template = """
     def {rpc_wrapper_name}(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, {proto_filename}_pb2.{rpc_request}())
+            req_obj = json_format.Parse(request, self.{proto_filename}_pb2.{rpc_request}())
             res_obj = self.{service_name}Stub.{rpc_name}(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:

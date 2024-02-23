@@ -23,7 +23,7 @@ class IpsecAPI(Base):
     def get_ipsec_version(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecVersionRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecVersionRequest())
             res_obj = self.IPsecServiceStub.IPsecVersion(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -34,7 +34,7 @@ class IpsecAPI(Base):
     def get_ipsec_stats(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecStatsRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecStatsRequest())
             res_obj = self.IPsecServiceStub.IPsecStats(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -45,7 +45,7 @@ class IpsecAPI(Base):
     def initiate_ipsec(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecInitiateRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecInitiateRequest())
             res_obj = self.IPsecServiceStub.IPsecInitiate(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -56,7 +56,7 @@ class IpsecAPI(Base):
     def terminate_ipsec(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecTerminateRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecTerminateRequest())
             res_obj = self.IPsecServiceStub.IPsecTerminate(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -67,7 +67,7 @@ class IpsecAPI(Base):
     def rekey_ipsec(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecRekeyRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecRekeyRequest())
             res_obj = self.IPsecServiceStub.IPsecRekey(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -78,7 +78,7 @@ class IpsecAPI(Base):
     def list_ipsec_sas(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListSasRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecListSasRequest())
             res_obj = self.IPsecServiceStub.IPsecListSas(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -89,7 +89,7 @@ class IpsecAPI(Base):
     def list_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListConnsRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecListConnsRequest())
             res_obj = self.IPsecServiceStub.IPsecListConns(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -100,7 +100,7 @@ class IpsecAPI(Base):
     def list_ipsec_certs(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecListCertsRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecListCertsRequest())
             res_obj = self.IPsecServiceStub.IPsecListCerts(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -111,7 +111,7 @@ class IpsecAPI(Base):
     def load_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecLoadConnRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecLoadConnRequest())
             res_obj = self.IPsecServiceStub.IPsecLoadConn(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
@@ -122,7 +122,7 @@ class IpsecAPI(Base):
     def unload_ipsec_connections(self, request):
         try:
             request = json.dumps(request)
-            req_obj = json_format.Parse(request, ipsec_pb2.IPsecUnloadConnRequest())
+            req_obj = json_format.Parse(request, self.ipsec_pb2.IPsecUnloadConnRequest())
             res_obj = self.IPsecServiceStub.IPsecUnloadConn(request=req_obj)
             response = json_format.MessageToDict(res_obj, preserving_proto_field_name=True)
             if response is not None:
