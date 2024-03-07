@@ -53,6 +53,12 @@ class PRFunction(Enum):
         PR_FUNCTION_SHA384 = 6
         PR_FUNCTION_SHA512 = 7
 
+class AuthType(Enum):
+	AUTH_TYPE_UNSPECIFIED = 0
+	AUTH_TYPE_PUBKEY      = 1
+	AUTH_TYPE_PSK         = 2
+	AUTH_TYPE_XAUTH       = 3
+	AUTH_TYPE_EAP         = 4
 
 class TrafficSelector:
 
@@ -810,7 +816,7 @@ class ListConnAuth:
     @property
     def _class(self) -> str:
         return self._class
-
+    
     @_class.setter
     def _class(self, value: str):
         self._class = value
